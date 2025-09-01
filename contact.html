@@ -229,16 +229,33 @@
         document.addEventListener('DOMContentLoaded', function() {
             setTheme(getTheme());
         });
+
+        // Confirmation function for unlock page
+        function confirmUnlockPage() {
+            const sarcasticMessages = [
+                "Oh, you want to go to the 'special' unlock page? Sure, if you really need that lever-pulling experience...",
+                "Really? The unlock page? I mean, you're already on the main site, but whatever floats your boat...",
+                "Ah yes, the mysterious lever page. Because apparently clicking a lever is more exciting than browsing the actual content...",
+                "You sure? It's just a lever. A digital lever. That does... lever things. But hey, you do you!",
+                "The unlock page? *sigh* Fine, if you insist on playing with virtual levers instead of reading about actual projects..."
+            ];
+            
+            const randomMessage = sarcasticMessages[Math.floor(Math.random() * sarcasticMessages.length)];
+            
+            if (confirm(randomMessage + "\n\nAre you sure you want to go to the unlock page?")) {
+                window.location.href = 'index.html';
+            }
+        }
     </script>
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-white/10">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <div class="flex items-center">
-                    <a href="index.html" class="text-2xl font-bold text-gradient">leizor.dev</a>
+                    <a href="main.html" class="text-2xl font-bold text-gradient hover:scale-105 transition-transform duration-300">leizor.dev</a>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-slate-600 dark:text-neutral-300 font-medium hover:text-primary-400 transition-colors duration-300 relative group">
+                    <a href="#" onclick="confirmUnlockPage()" class="text-slate-600 dark:text-neutral-300 font-medium hover:text-primary-400 transition-colors duration-300 relative group">
                         Home
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
                     </a>
