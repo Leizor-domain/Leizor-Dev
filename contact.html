@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - leizor Dev | Start Your Project</title>
+    <meta name="description" content="Ready to transform your business? Let's discuss your project requirements and explore how our enterprise solutions can drive innovation and growth for your organization.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        'primary': {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        'neutral': {
+                            50: '#fafafa',
+                            100: '#f5f5f5',
+                            200: '#e5e5e5',
+                            300: '#d4d4d4',
+                            400: '#a3a3a3',
+                            500: '#737373',
+                            600: '#525252',
+                            700: '#404040',
+                            800: '#262626',
+                            900: '#171717',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'scale-in': 'scaleIn 0.6s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                        'shake': 'shake 0.5s ease-in-out',
+                        'success': 'success 0.6s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.9)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        shake: {
+                            '0%, 100%': { transform: 'translateX(0)' },
+                            '10%, 30%, 50%, 70%, 90%': { transform: 'translateX(-5px)' },
+                            '20%, 40%, 60%, 80%': { transform: 'translateX(5px)' },
+                        },
+                        success: {
+                            '0%': { transform: 'scale(0.8)', opacity: '0' },
+                            '50%': { transform: 'scale(1.1)' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+        }
+        
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        }
+        
+        .form-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(14, 165, 233, 0.5);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+        
+        .form-input.error {
+            border-color: #ef4444;
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        .form-input.success {
+            border-color: #10b981;
+        }
+        
+        .loading-dots {
+            display: inline-block;
+        }
+        
+        .loading-dots::after {
+            content: '';
+            animation: dots 1.5s steps(5, end) infinite;
+        }
+        
+        @keyframes dots {
+            0%, 20% { content: ''; }
+            40% { content: '.'; }
+            60% { content: '..'; }
+            80%, 100% { content: '...'; }
+        }
+    </style>
+</head>
+<body class="gradient-bg text-white font-sans antialiased overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold text-gradient">leizor.dev</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-neutral-300 font-medium hover:text-primary-400 transition-colors duration-300 relative group">
+                        Home
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="about.html" class="text-neutral-300 font-medium hover:text-primary-400 transition-colors duration-300 relative group">
+                        About
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="work.html" class="text-neutral-300 font-medium hover:text-primary-400 transition-colors duration-300 relative group">
+                        Work
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="blog/" class="text-neutral-300 font-medium hover:text-primary-400 transition-colors duration-300 relative group">
+                        Insights
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="contact.html" class="text-white font-medium relative group">
+                        Contact
+                        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-primary-400"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Background Elements -->
+        <div class="absolute inset-0">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl animate-float"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-3xl animate-float" style="animation-delay: -6s;"></div>
+        </div>
+        
+        <div class="relative z-10 text-center max-w-5xl mx-auto px-6 lg:px-8">
+            <div class="animate-slide-up">
+                <h1 class="text-6xl lg:text-7xl font-bold mb-8 leading-tight">
+                    <span class="text-white">Let's Build</span>
+                    <br>
+                    <span class="text-gradient">Something Amazing</span>
+                </h1>
+                
+                <p class="text-xl lg:text-2xl text-neutral-300 mb-12 max-w-4xl mx-auto leading-relaxed font-light">
+                    Ready to transform your business with cutting-edge technology? 
+                    Let's discuss your project and explore how we can bring your vision to life.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="py-24 relative">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                <!-- Contact Information -->
+                <div class="animate-fade-in">
+                    <h2 class="text-4xl font-bold text-white mb-8">Get In Touch</h2>
+                    <p class="text-xl text-neutral-300 mb-12 leading-relaxed">
+                        Whether you have a specific project in mind or just want to explore possibilities, 
+                        I'm here to help bring your ideas to life with cutting-edge technology solutions.
+                    </p>
+                    
+                    <div class="space-y-8">
+                        <div class="group p-6 glass-effect rounded-2xl hover-lift border border-white/5">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-white mb-2">Email</h3>
+                                    <a href="mailto:hello@leizor.dev" class="text-primary-400 hover:text-primary-300 transition-colors duration-300">
+                                        hello@leizor.dev
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="group p-6 glass-effect rounded-2xl hover-lift border border-white/5">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-white mb-2">Location</h3>
+                                    <p class="text-neutral-300">Global - Available Worldwide</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="group p-6 glass-effect rounded-2xl hover-lift border border-white/5">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-white mb-2">Response Time</h3>
+                                    <p class="text-neutral-300">Within 24 hours</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12 p-6 glass-effect rounded-2xl border border-white/5">
+                        <h3 class="text-xl font-semibold text-white mb-4">Why Choose Us?</h3>
+                        <ul class="space-y-3 text-neutral-300">
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Enterprise-grade solutions</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Proven track record</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>24/7 support available</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Scalable architecture</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="animate-fade-in">
+                    <div class="glass-effect rounded-3xl p-8 border border-white/5">
+                        <h3 class="text-2xl font-bold text-white mb-6">Start Your Project</h3>
+                        
+                        <form id="contactForm" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="firstName" class="block text-sm font-medium text-neutral-300 mb-2">First Name *</label>
+                                    <input type="text" id="firstName" name="firstName" required 
+                                           class="w-full form-input rounded-xl px-4 py-3 text-white placeholder-neutral-400 focus:outline-none">
+                                    <div class="error-message text-red-400 text-sm mt-1 hidden"></div>
+                                </div>
+                                
+                                <div>
+                                    <label for="lastName" class="block text-sm font-medium text-neutral-300 mb-2">Last Name *</label>
+                                    <input type="text" id="lastName" name="lastName" required 
+                                           class="w-full form-input rounded-xl px-4 py-3 text-white placeholder-neutral-400 focus:outline-none">
+                                    <div class="error-message text-red-400 text-sm mt-1 hidden"></div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-neutral-300 mb-2">Email Address *</label>
+                                <input type="email" id="email" name="email" required 
+                                       class="w-full form-input rounded-xl px-4 py-3 text-white placeholder-neutral-400 focus:outline-none">
+                                <div class="error-message text-red-400 text-sm mt-1 hidden"></div>
+                            </div>
+                            
+                            <div>
+                                <label for="company" class="block text-sm font-medium text-neutral-300 mb-2">Company</label>
+                                <input type="text" id="company" name="company" 
+                                       class="w-full form-input rounded-xl px-4 py-3 text-white placeholder-neutral-400 focus:outline-none">
+                            </div>
+                            
+                            <div>
+                                <label for="projectType" class="block text-sm font-medium text-neutral-300 mb-2">Project Type *</label>
+                                <select id="projectType" name="projectType" required 
+                                        class="w-full form-input rounded-xl px-4 py-3 text-white focus:outline-none">
+                                    <option value="" class="text-neutral-900">Select a project type</option>
+                                    <option value="web-app" class="text-neutral-900">Web Application</option>
+                                    <option value="mobile-app" class="text-neutral-900">Mobile Application</option>
+                                    <option value="enterprise" class="text-neutral-900">Enterprise Solution</option>
+                                    <option value="consulting" class="text-neutral-900">Technology Consulting</option>
+                                    <option value="other" class="text-neutral-900">Other</option>
+                                </select>
+                                <div class="error-message text-red-400 text-sm mt-1 hidden"></div>
+                            </div>
+                            
+                            <div>
+                                <label for="budget" class="block text-sm font-medium text-neutral-300 mb-2">Budget Range</label>
+                                <select id="budget" name="budget" 
+                                        class="w-full form-input rounded-xl px-4 py-3 text-white focus:outline-none">
+                                    <option value="" class="text-neutral-900">Select budget range</option>
+                                    <option value="10k-25k" class="text-neutral-900">$10,000 - $25,000</option>
+                                    <option value="25k-50k" class="text-neutral-900">$25,000 - $50,000</option>
+                                    <option value="50k-100k" class="text-neutral-900">$50,000 - $100,000</option>
+                                    <option value="100k+" class="text-neutral-900">$100,000+</option>
+                                    <option value="discuss" class="text-neutral-900">Let's discuss</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="timeline" class="block text-sm font-medium text-neutral-300 mb-2">Timeline</label>
+                                <select id="timeline" name="timeline" 
+                                        class="w-full form-input rounded-xl px-4 py-3 text-white focus:outline-none">
+                                    <option value="" class="text-neutral-900">Select timeline</option>
+                                    <option value="1-3months" class="text-neutral-900">1-3 months</option>
+                                    <option value="3-6months" class="text-neutral-900">3-6 months</option>
+                                    <option value="6-12months" class="text-neutral-900">6-12 months</option>
+                                    <option value="12+months" class="text-neutral-900">12+ months</option>
+                                    <option value="flexible" class="text-neutral-900">Flexible</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-neutral-300 mb-2">Project Details *</label>
+                                <textarea id="message" name="message" rows="6" required 
+                                          class="w-full form-input rounded-xl px-4 py-3 text-white placeholder-neutral-400 focus:outline-none resize-none"
+                                          placeholder="Tell us about your project, goals, and any specific requirements..."></textarea>
+                                <div class="flex justify-between items-center mt-2">
+                                    <div class="error-message text-red-400 text-sm hidden"></div>
+                                    <div class="text-sm text-neutral-400">
+                                        <span id="charCount">0</span>/1000 characters
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" id="submitBtn" 
+                                    class="w-full bg-gradient-to-r from-primary-500 to-blue-600 hover:from-primary-600 hover:to-blue-700 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 hover:shadow-2xl hover:shadow-primary-500/25 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
+                                <span id="submitText">Send Message</span>
+                                <span id="submitSpinner" class="hidden loading-dots"></span>
+                            </button>
+                        </form>
+                        
+                        <!-- Success Message -->
+                        <div id="successMessage" class="hidden mt-6 p-4 bg-green-500/20 border border-green-500/30 rounded-xl text-center">
+                            <div class="flex items-center justify-center gap-3 mb-2">
+                                <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span class="text-green-400 font-semibold">Message Sent Successfully!</span>
+                            </div>
+                            <p class="text-green-300 text-sm">Thank you for reaching out. I'll get back to you within 24 hours.</p>
+                        </div>
+                        
+                        <!-- Error Message -->
+                        <div id="errorMessage" class="hidden mt-6 p-4 bg-red-500/20 border border-red-500/30 rounded-xl text-center">
+                            <div class="flex items-center justify-center gap-3 mb-2">
+                                <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                                <span class="text-red-400 font-semibold">Something went wrong</span>
+                            </div>
+                            <p id="errorText" class="text-red-300 text-sm">Please try again or contact us directly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-24 relative">
+        <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <div class="glass-effect rounded-3xl p-12 border border-white/5">
+                <h2 class="text-5xl font-bold text-white mb-6">Ready to Get Started?</h2>
+                <p class="text-xl text-neutral-300 mb-8 leading-relaxed">
+                    Let's discuss your project and explore how we can bring your vision to life 
+                    with cutting-edge technology and enterprise-grade solutions.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <a href="#contactForm" class="px-8 py-4 bg-gradient-to-r from-primary-500 to-blue-600 text-white font-semibold rounded-xl hover:from-primary-600 hover:to-blue-700 transition-all duration-300 hover:shadow-2xl hover:shadow-primary-500/25 transform hover:scale-105">
+                        Start Your Project
+                    </a>
+                    <a href="projects/" class="px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 hover:border-white/40 transition-all duration-300 backdrop-blur-sm">
+                        View Our Work
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <span class="text-2xl font-bold text-gradient mb-4 block">leizor.dev</span>
+                    <p class="text-neutral-400 text-sm leading-relaxed">
+                        Building digital solutions that drive business transformation and innovation.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm text-neutral-400">
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">Full-Stack Development</a></li>
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">Enterprise Architecture</a></li>
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">Technology Consulting</a></li>
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">Cloud Solutions</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-neutral-400">
+                        <li><a href="about.html" class="hover:text-primary-400 transition-colors">About</a></li>
+                        <li><a href="projects/" class="hover:text-primary-400 transition-colors">Work</a></li>
+                        <li><a href="blog/" class="hover:text-primary-400 transition-colors">Insights</a></li>
+                        <li><a href="contact.html" class="hover:text-primary-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-sm text-neutral-400">
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">LinkedIn</a></li>
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">GitHub</a></li>
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">Twitter</a></li>
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">Email</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-white/10 text-center">
+                <p class="text-neutral-400 text-sm">
+                    &copy; 2024 leizor Dev. All rights reserved. Building the future, one line of code at a time.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Contact Form Handler
+        class ContactForm {
+            constructor() {
+                this.form = document.getElementById('contactForm');
+                this.submitBtn = document.getElementById('submitBtn');
+                this.submitText = document.getElementById('submitText');
+                this.submitSpinner = document.getElementById('submitSpinner');
+                this.successMessage = document.getElementById('successMessage');
+                this.errorMessage = document.getElementById('errorMessage');
+                this.errorText = document.getElementById('errorText');
+                this.charCount = document.getElementById('charCount');
+                
+                this.init();
+            }
+            
+            init() {
+                this.setupEventListeners();
+                this.setupCharacterCount();
+            }
+            
+            setupEventListeners() {
+                this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+                
+                // Real-time validation
+                const inputs = this.form.querySelectorAll('input, select, textarea');
+                inputs.forEach(input => {
+                    input.addEventListener('blur', () => this.validateField(input));
+                    input.addEventListener('input', () => this.hideFieldError(input));
+                });
+            }
+            
+            setupCharacterCount() {
+                const messageField = document.getElementById('message');
+                messageField.addEventListener('input', (e) => {
+                    const count = e.target.value.length;
+                    this.charCount.textContent = count;
+                    
+                    if (count > 1000) {
+                        this.charCount.classList.add('text-red-400');
+                    } else {
+                        this.charCount.classList.remove('text-red-400');
+                    }
+                });
+            }
+            
+            validateField(field) {
+                const value = field.value.trim();
+                let isValid = true;
+                let errorMessage = '';
+                
+                if (field.hasAttribute('required') && !value) {
+                    isValid = false;
+                    errorMessage = 'This field is required';
+                } else if (field.type === 'email' && value && !this.isValidEmail(value)) {
+                    isValid = false;
+                    errorMessage = 'Please enter a valid email address';
+                }
+                
+                if (!isValid) {
+                    this.showFieldError(field, errorMessage);
+                } else {
+                    this.hideFieldError(field);
+                }
+                
+                return isValid;
+            }
+            
+            isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+            
+            showFieldError(field, message) {
+                field.classList.add('error');
+                const errorDiv = field.parentNode.querySelector('.error-message');
+                if (errorDiv) {
+                    errorDiv.textContent = message;
+                    errorDiv.classList.remove('hidden');
+                }
+            }
+            
+            hideFieldError(field) {
+                field.classList.remove('error');
+                const errorDiv = field.parentNode.querySelector('.error-message');
+                if (errorDiv) {
+                    errorDiv.classList.add('hidden');
+                }
+            }
+            
+            validateForm() {
+                const inputs = this.form.querySelectorAll('input, select, textarea');
+                let isValid = true;
+                
+                inputs.forEach(input => {
+                    if (!this.validateField(input)) {
+                        isValid = false;
+                    }
+                });
+                
+                return isValid;
+            }
+            
+            async handleSubmit(e) {
+                e.preventDefault();
+                
+                if (!this.validateForm()) {
+                    return;
+                }
+                
+                this.setLoadingState(true);
+                this.hideMessages();
+                
+                try {
+                    // Simulate API call
+                    await this.submitForm();
+                    this.showSuccess();
+                    this.form.reset();
+                    this.charCount.textContent = '0';
+                } catch (error) {
+                    this.showError(error.message);
+                } finally {
+                    this.setLoadingState(false);
+                }
+            }
+            
+            async submitForm() {
+                // Simulate API call delay
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // Simulate random success/failure
+                if (Math.random() > 0.1) {
+                    return { success: true };
+                } else {
+                    throw new Error('Network error. Please try again.');
+                }
+            }
+            
+            setLoadingState(loading) {
+                if (loading) {
+                    this.submitBtn.disabled = true;
+                    this.submitText.classList.add('hidden');
+                    this.submitSpinner.classList.remove('hidden');
+                } else {
+                    this.submitBtn.disabled = false;
+                    this.submitText.classList.remove('hidden');
+                    this.submitSpinner.classList.add('hidden');
+                }
+            }
+            
+            showSuccess() {
+                this.successMessage.classList.remove('hidden');
+                this.successMessage.style.animation = 'success 0.6s ease-out';
+            }
+            
+            showError(message) {
+                this.errorText.textContent = message;
+                this.errorMessage.classList.remove('hidden');
+                this.errorMessage.style.animation = 'shake 0.5s ease-in-out';
+            }
+            
+            hideMessages() {
+                this.successMessage.classList.add('hidden');
+                this.errorMessage.classList.add('hidden');
+            }
+        }
+        
+        // Initialize form when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            new ContactForm();
+            
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections for animation
+            document.querySelectorAll('section').forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(50px)';
+                section.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+                observer.observe(section);
+            });
+
+            // Parallax effect for background elements
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.absolute');
+                
+                parallaxElements.forEach(element => {
+                    const speed = 0.5;
+                    element.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            });
+
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Console message
+        console.log("Contact page loaded. Ready to start building amazing projects together!");
+    </script>
+</body>
+</html>

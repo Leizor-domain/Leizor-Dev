@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - leizor Dev</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'mono': ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-gray-100 font-mono min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 border-b border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="text-green-400 font-bold text-xl">leizor.dev</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="../index.html" class="text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="../about.html" class="text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="../projects/" class="text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+                        <a href="index.html" class="text-green-400 px-3 py-2 rounded-md text-sm font-medium">Blog</a>
+                        <a href="../credentials.html" class="text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium">Credentials</a>
+                        <a href="../contact.html" class="text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                My Technical Rants
+            </h1>
+            <p class="text-xl text-gray-400">
+                Random thoughts, debugging stories, and occasional wisdom.
+                <span class="text-green-400">Mostly written while debugging at 3 AM.</span>
+            </p>
+        </div>
+
+        <!-- Featured Post -->
+        <div class="bg-gray-800 rounded-lg border border-gray-700 overflow-hidden mb-12">
+            <div class="p-8">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="bg-red-500 text-white text-xs px-2 py-1 rounded">Featured</span>
+                    <span class="bg-green-500 text-white text-xs px-2 py-1 rounded">Latest</span>
+                </div>
+                <h2 class="text-2xl font-bold text-green-400 mb-4">
+                    Why JavaScript is Both My Best Friend and Worst Enemy
+                </h2>
+                <p class="text-gray-300 mb-4">
+                    A love-hate relationship with the language that runs the web.
+                    From "undefined is not a function" to "it works on my machine" -
+                    the complete story of my JavaScript journey.
+                </p>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4 text-sm text-gray-400">
+                        <span>📅 March 15, 2024</span>
+                        <span>☕ 5 min read</span>
+                        <span>🐛 Debugging</span>
+                    </div>
+                    <a href="javascript-love-hate.html" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition-colors">
+                        Read More
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Blog Posts Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <!-- Post 1 -->
+            <div class="bg-gray-800 rounded-lg border border-gray-700 overflow-hidden hover:border-green-400 transition-colors duration-200">
+                <div class="p-6">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-blue-500 text-white text-xs px-2 py-1 rounded">Java</span>
+                        <span class="bg-yellow-500 text-white text-xs px-2 py-1 rounded">Spring</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-green-400 mb-3">
+                        Spring Boot: The Framework That Made Me Love Java Again
+                    </h3>
+                    <p class="text-gray-300 text-sm mb-4">
+                        How Spring Boot turned my Java development from "please kill me"
+                        to "this is actually not terrible."
+                    </p>
+                    <div class="flex items-center justify-between text-sm text-gray-400">
+                        <span>📅 March 10, 2024</span>
+                        <span>☕ 3 min read</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Post 2 -->
+            <div class="bg-gray-800 rounded-lg border border-gray-700 overflow-hidden hover:border-green-400 transition-colors duration-200">
+                <div class="p-6">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-purple-500 text-white text-xs px-2 py-1 rounded">CSS</span>
+                        <span class="bg-green-500 text-white text-xs px-2 py-1 rounded">Tailwind</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-green-400 mb-3">
+                        Tailwind CSS: The Utility-First Revolution
+                    </h3>
+                    <p class="text-gray-300 text-sm mb-4">
+                        Why I stopped writing custom CSS and embraced the utility-first approach.
+                        Spoiler: My sanity thanks me.
+                    </p>
+                    <div class="flex items-center justify-between text-sm text-gray-400">
+                        <span>📅 March 5, 2024</span>
+                        <span>☕ 4 min read</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Post 3 -->
+            <div class="bg-gray-800 rounded-lg border border-gray-700 overflow-hidden hover:border-green-400 transition-colors duration-200">
+                <div class="p-6">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-red-500 text-white text-xs px-2 py-1 rounded">DevOps</span>
+                        <span class="bg-blue-500 text-white text-xs px-2 py-1 rounded">Docker</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-green-400 mb-3">
+                        Docker: When "It Works on My Machine" Finally Stops Being a Problem
+                    </h3>
+                    <p class="text-gray-300 text-sm mb-4">
+                        The story of how Docker saved my deployment nightmares and
+                        made my sysadmin stop hating me.
+                    </p>
+                    <div class="flex items-center justify-between text-sm text-gray-400">
+                        <span>📅 March 1, 2024</span>
+                        <span>☕ 6 min read</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Post 4 -->
+            <div class="bg-gray-800 rounded-lg border border-gray-700 overflow-hidden hover:border-green-400 transition-colors duration-200">
+                <div class="p-6">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-yellow-500 text-white text-xs px-2 py-1 rounded">Career</span>
+                        <span class="bg-green-500 text-white text-xs px-2 py-1 rounded">Advice</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-green-400 mb-3">
+                        How to Survive Your First Production Bug
+                    </h3>
+                    <p class="text-gray-300 text-sm mb-4">
+                        A survival guide for when your code breaks in production
+                        and you're the one who has to fix it at 2 AM.
+                    </p>
+                    <div class="flex items-center justify-between text-sm text-gray-400">
+                        <span>📅 February 25, 2024</span>
+                        <span>☕ 7 min read</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Blog Categories -->
+        <div class="bg-gray-800 rounded-lg p-8 border border-gray-700 mb-12">
+            <h2 class="text-2xl font-bold text-green-400 mb-6">Blog Categories</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <a href="#" class="p-4 bg-gray-700 rounded-lg text-center hover:bg-gray-600 transition-colors">
+                    <div class="text-2xl mb-2">🐛</div>
+                    <div class="text-gray-300">Debugging</div>
+                </a>
+                <a href="#" class="p-4 bg-gray-700 rounded-lg text-center hover:bg-gray-600 transition-colors">
+                    <div class="text-2xl mb-2">☕</div>
+                    <div class="text-gray-300">Coffee & Code</div>
+                </a>
+                <a href="#" class="p-4 bg-gray-700 rounded-lg text-center hover:bg-gray-600 transition-colors">
+                    <div class="text-2xl mb-2">🚀</div>
+                    <div class="text-gray-300">Tutorials</div>
+                </a>
+                <a href="#" class="p-4 bg-gray-700 rounded-lg text-center hover:bg-gray-600 transition-colors">
+                    <div class="text-2xl mb-2">💭</div>
+                    <div class="text-gray-300">Rants</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Newsletter Signup -->
+        <div class="bg-gray-800 rounded-lg p-8 border border-gray-700 text-center">
+            <h2 class="text-2xl font-bold text-green-400 mb-4">Get My Rants in Your Inbox</h2>
+            <p class="text-gray-300 mb-6">
+                Subscribe to get notified when I publish new posts about debugging,
+                coffee consumption, and random tech thoughts.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+                <input
+                    type="email"
+                    placeholder="your.email@example.com"
+                    class="flex-1 px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-green-400"
+                >
+                <button class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg transition-colors">
+                    Subscribe
+                </button>
+            </div>
+            <p class="text-xs text-gray-500 mt-3">
+                No spam, just quality content and occasional coffee recommendations.
+            </p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 border-t border-gray-700 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center text-gray-400">
+                <p>&copy; 2024 leizor Dev. Built with ❤️ and probably some frustration.</p>
+                <p class="text-sm mt-2">Yeah, I built that. Want one too?</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        console.log("Blog page loaded. Time for some technical rants!");
+
+        // Add some interactive fun to blog cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const blogCards = document.querySelectorAll('.bg-gray-800');
+            blogCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.transition = 'transform 0.2s ease-in-out';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

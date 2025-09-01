@@ -1,0 +1,2166 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>leizor Dev - Enterprise Solutions Architect</title>
+    <meta name="description" content="Enterprise-level full-stack development and technology consulting. Building scalable solutions for Fortune 500 companies and innovative startups.">
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        'primary': {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        'neutral': {
+                            50: '#fafafa',
+                            100: '#f5f5f5',
+                            200: '#e5e5e5',
+                            300: '#d4d4d4',
+                            400: '#a3a3a3',
+                            500: '#737373',
+                            600: '#525252',
+                            700: '#404040',
+                            800: '#262626',
+                            900: '#171717',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'scale-in': 'scaleIn 0.6s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                        'gradient': 'gradient 8s ease infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.9)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Theme Variables */
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --accent: #0ea5e9;
+        }
+
+        .dark {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border-color: #334155;
+            --accent: #0ea5e9;
+        }
+
+        /* Light Theme Styles */
+        .light .gradient-bg {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #e2e8f0 100%);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        .light .glass-effect {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .light .text-gradient {
+            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+        }
+
+        /* Dark Theme Styles */
+        .dark .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        .dark .glass-effect {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .dark .text-gradient {
+            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+        }
+        
+        .border-gradient {
+            border: 1px solid;
+            border-image: linear-gradient(135deg, #0ea5e9, #3b82f6, #8b5cf6) 1;
+        }
+        
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+        }
+
+        .dark .section-divider {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            color: #0ea5e9;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(14, 165, 233, 0.2);
+            border-color: rgba(14, 165, 233, 0.4);
+        }
+
+        /* News Feed Styles */
+        .news-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .news-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* News Category Button Styles */
+        .news-category-btn {
+            background: rgb(226 232 240);
+            color: rgb(51 65 85);
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .news-category-btn:hover {
+            background: rgb(203 213 225);
+            transform: translateY(-1px);
+        }
+
+        .news-category-btn.active {
+            background: rgb(14 165 233);
+            color: white;
+            border-color: rgb(14 165 233);
+        }
+
+        .dark .news-category-btn {
+            background: rgb(51 65 85);
+            color: rgb(203 213 225);
+        }
+
+        .dark .news-category-btn:hover {
+            background: rgb(71 85 105);
+        }
+
+        .dark .news-category-btn.active {
+            background: rgb(14 165 233);
+            color: white;
+        }
+
+        /* Smooth theme transitions */
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        /* Line clamp utilities */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        /* Feed Panel Styles */
+        .feed-category-tab {
+            color: rgb(71 85 105);
+            transition: color 0.3s ease;
+        }
+        
+        .dark .feed-category-tab {
+            color: rgb(163 163 163);
+        }
+        
+        .feed-category-tab:hover {
+            color: rgb(30 41 59);
+        }
+        
+        .dark .feed-category-tab:hover {
+            color: rgb(255 255 255);
+        }
+        
+        .feed-category-tab.active {
+            color: rgb(0 164 233);
+            border-bottom: 2px solid rgb(0 164 233);
+        }
+        
+        .dark .feed-category-tab.active {
+            color: rgb(56 189 248);
+            border-bottom: 2px solid rgb(56 189 248);
+        }
+        
+        /* Feed Panel Animations */
+        .feed-panel-open {
+            transform: translateX(0);
+        }
+        
+        .feed-overlay-visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            #feed-panel {
+                width: 100%;
+            }
+        }
+        
+        /* Z-index utilities */
+        .z-45 {
+            z-index: 45;
+        }
+        
+        /* Ensure proper stacking context */
+        .glass-effect {
+            z-index: 50;
+        }
+        
+        /* Mobile menu animations */
+        .mobile-menu-open {
+            transform: translateX(0) !important;
+        }
+        
+        /* Ensure mobile menu starts from right */
+        #mobile-menu-overlay > div {
+            transform: translateX(100%);
+        }
+    </style>
+</head>
+<body class="gradient-bg text-slate-800 font-sans antialiased overflow-x-hidden">
+    <!-- Theme Toggle Script -->
+    <script>
+        // Theme management
+        function getTheme() {
+            return localStorage.getItem('theme') || 'light';
+        }
+
+        function setTheme(theme) {
+            localStorage.setItem('theme', theme);
+            document.documentElement.className = theme;
+            updateThemeToggle();
+        }
+
+        function toggleTheme() {
+            const currentTheme = getTheme();
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+        }
+
+        function updateThemeToggle() {
+            const theme = getTheme();
+            const toggleBtn = document.getElementById('theme-toggle');
+            if (toggleBtn) {
+                toggleBtn.innerHTML = theme === 'light' 
+                    ? '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9 0 0012 21a9.003 9 0 008.354-5.646z"></path></svg>'
+                    : '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m6.75-6.75l.75.75m0 0l.75-.75M6.75 6.75l-.75.75m0 0l-.75-.75m13.5 13.5l.75.75m0 0l.75-.75m0 0l-.75.75m0 0l-.75-.75M6.75 17.25l.75.75m0 0l.75-.75m0 0l-.75.75m0 0l-.75-.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
+            }
+        }
+
+        // Initialize theme on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTheme(getTheme());
+        });
+    </script>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-slate-200 dark:border-white/10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-gradient">leizor.dev</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-slate-800 dark:text-white font-medium hover:text-primary-400 transition-colors duration-300 relative group">
+                        Home
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="about.html" class="text-slate-600 dark:text-neutral-300 font-medium hover:text-primary-400 transition-colors duration-300 relative group">
+                        About
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="work.html" class="text-slate-600 dark:text-neutral-300 font-medium hover:text-primary-400 transition-colors duration-300 relative group">
+                        Work
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="blog/" class="text-slate-600 dark:text-neutral-300 font-medium hover:text-primary-400 transition-colors duration-300 relative group">
+                        Insights
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="assets/cv/olalekan-adeojo-resume.pdf" download class="text-slate-600 dark:text-neutral-300 font-medium hover:text-primary-400 transition-colors duration-300 relative group">
+                        CV
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="contact.html" class="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/25">
+                        Start Project
+                    </a>
+                    <!-- Feed Panel Toggle Button -->
+                    <button 
+                        id="feed-toggle" 
+                        onclick="toggleFeedPanel()" 
+                        class="p-3 rounded-lg hover:shadow-lg transition-all duration-300 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600"
+                        title="Toggle news feed"
+                    >
+                        <svg class="w-5 h-5 text-slate-600 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+                        </svg>
+                    </button>
+                    <!-- Theme Toggle Button -->
+                    <button 
+                        id="theme-toggle" 
+                        onclick="toggleTheme()" 
+                        class="theme-toggle p-3 rounded-lg hover:shadow-lg transition-all duration-300"
+                        title="Toggle theme"
+                    >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9 0 0012 21a9.003 9 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                    <svg class="w-6 h-6 text-slate-600 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Feed Panel Overlay -->
+    <div id="feed-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-45 hidden transition-opacity duration-300">
+        <div id="feed-panel" class="fixed top-0 right-0 h-full w-full md:w-[35%] lg:w-[30%] bg-white dark:bg-slate-900 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out overflow-hidden">
+            <!-- Feed Panel Header -->
+            <div class="flex items-center justify-between p-6 border-b border-slate-200 dark:border-slate-700 bg-gradient-to-r from-primary-50 to-blue-50 dark:from-primary-900/20 dark:to-blue-900/20">
+                <h2 class="text-xl font-bold text-slate-800 dark:text-white flex items-center">
+                    <svg class="w-5 h-5 text-primary-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+                    </svg>
+                    News & Interests
+                </h2>
+                <button onclick="toggleFeedPanel()" class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                    <svg class="w-5 h-5 text-slate-600 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                <button onclick="renderFeedContent()" class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors ml-2" title="Refresh content">
+                    <svg class="w-5 h-5 text-slate-600 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Feed Categories Tabs -->
+            <div class="flex border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
+                <button onclick="switchFeedCategory('top')" class="feed-category-tab active px-4 py-3 text-sm font-medium transition-colors">
+                    Top Stories
+                </button>
+                <button onclick="switchFeedCategory('sports')" class="feed-category-tab px-4 py-3 text-sm font-medium transition-colors">
+                    Sports
+                </button>
+                <button onclick="switchFeedCategory('markets')" class="feed-category-tab px-4 py-3 text-sm font-medium transition-colors">
+                    Markets
+                </button>
+                <button onclick="switchFeedCategory('tech')" class="feed-category-tab px-4 py-3 text-sm font-medium transition-colors">
+                    Technology
+                </button>
+                <button onclick="switchFeedCategory('f1')" class="feed-category-tab px-4 py-3 text-sm font-medium transition-colors">
+                    Formula 1
+                </button>
+            </div>
+
+                            <!-- Feed Content -->
+                <div class="h-full overflow-y-auto">
+                    <div id="feed-content" class="p-4 space-y-4">
+                        <!-- Feed items will be populated here -->
+                        <div class="text-center py-8">
+                            <p class="text-slate-500 dark:text-neutral-400">Loading feed content...</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden transition-opacity duration-300">
+        <div class="fixed top-0 right-0 h-full w-full bg-white dark:bg-slate-900 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out overflow-hidden">
+            <!-- Mobile Menu Header -->
+            <div class="flex items-center justify-between p-6 border-b border-slate-200 dark:border-slate-700 bg-gradient-to-r from-primary-50 to-blue-50 dark:from-primary-900/20 dark:to-blue-900/20">
+                <h2 class="text-xl font-bold text-slate-800 dark:text-white">Menu</h2>
+                <button onclick="toggleMobileMenu()" class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                    <svg class="w-6 h-6 text-slate-600 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu Content -->
+            <div class="p-6 space-y-4">
+                <a href="index.html" class="block py-3 px-4 text-slate-800 dark:text-white font-medium hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                    Home
+                </a>
+                <a href="about.html" class="block py-3 px-4 text-slate-600 dark:text-neutral-300 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                    About
+                </a>
+                <a href="work.html" class="block py-3 px-4 text-slate-600 dark:text-neutral-300 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                    Work
+                </a>
+                <a href="blog/" class="block py-3 px-4 text-slate-600 dark:text-neutral-300 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                    Insights
+                </a>
+                <a href="assets/cv/olalekan-adeojo-resume.pdf" download class="block py-3 px-4 text-slate-600 dark:text-neutral-300 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                    CV
+                </a>
+                <a href="contact.html" class="block py-3 px-4 bg-primary-600 text-white font-medium rounded-lg text-center">
+                    Start Project
+                </a>
+                
+                <!-- Mobile Menu Actions -->
+                <div class="pt-6 border-t border-slate-200 dark:border-slate-700 space-y-3">
+                    <button onclick="toggleFeedPanel(); toggleMobileMenu();" class="w-full flex items-center justify-center py-3 px-4 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+                        </svg>
+                        News & Interests
+                    </button>
+                    <button onclick="toggleTheme()" class="w-full flex items-center justify-center py-3 px-4 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9 0 0012 21a9.003 9 0 008.354-5.646z"></path>
+                        </svg>
+                        Toggle Theme
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl animate-float"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-3xl animate-float" style="animation-delay: -6s;"></div>
+        </div>
+        
+        <div class="relative z-10 text-center max-w-5xl mx-auto px-6 lg:px-8">
+            <div class="animate-slide-up">
+                <h1 class="text-6xl lg:text-8xl font-bold mb-8 leading-tight">
+                    <span class="text-slate-800 dark:text-white">Full-Stack Developer</span>
+                    <br>
+                    <span class="text-gradient">System Architect</span>
+                    <br>
+                    <span class="text-slate-800 dark:text-white">Problem Solver</span>
+                </h1>
+                
+                <p class="text-xl lg:text-2xl text-slate-600 dark:text-neutral-300 mb-8 max-w-4xl mx-auto leading-relaxed font-light">
+                    Enterprise solutions architect and full-stack developer specializing in scalable, 
+                    high-performance applications that drive business transformation and innovation.
+                    <br><span class="text-primary-400 text-lg">Powered by caffeine and clean code.</span>
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
+                    <a href="work.html" class="group px-8 py-4 bg-white text-neutral-900 font-semibold rounded-xl hover:bg-neutral-100 transition-all duration-300 hover:shadow-2xl hover:shadow-white/20 relative overflow-hidden">
+                        <span class="relative z-10">View Portfolio</span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-primary-400 to-blue-500 transform translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+                    </a>
+                    
+                    <a href="contact.html" class="px-8 py-4 border border-slate-300 dark:border-white/20 text-slate-800 dark:text-white font-semibold rounded-xl hover:bg-slate-100 dark:hover:bg-white/10 hover:border-slate-400 dark:hover:border-white/40 transition-all duration-300 backdrop-blur-sm">
+                        Discuss Project
+                    </a>
+                </div>
+                
+                <div class="flex justify-center">
+                    <a href="assets/cv/olalekan-adeojo-resume.pdf" download class="inline-flex items-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/25">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        Download CV
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div class="w-6 h-10 border-2 border-slate-400 dark:border-white/30 rounded-full flex justify-center">
+                <div class="w-1 h-3 bg-slate-500 dark:bg-white/60 rounded-full mt-2 animate-pulse"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center group">
+                    <div class="text-4xl font-bold text-primary-400 mb-2 group-hover:scale-110 transition-transform duration-300">$50M+</div>
+                    <div class="text-slate-600 dark:text-neutral-400 font-medium">Revenue Generated</div>
+                    <div class="text-sm text-slate-500 dark:text-neutral-500 mt-1">For client projects</div>
+                </div>
+                
+                <div class="text-center group">
+                    <div class="text-4xl font-bold text-blue-400 mb-2 group-hover:scale-110 transition-transform duration-300">500+</div>
+                    <div class="text-slate-600 dark:text-neutral-400 font-medium">Projects Delivered</div>
+                    <div class="text-sm text-slate-500 dark:text-neutral-500 mt-1">Across industries</div>
+                </div>
+                
+                <div class="text-center group">
+                    <div class="text-4xl font-bold text-purple-400 mb-2 group-hover:scale-110 transition-transform duration-300">99.9%</div>
+                    <div class="text-slate-600 dark:text-neutral-400 font-medium">Uptime Achieved</div>
+                    <div class="text-sm text-slate-500 dark:text-neutral-500 mt-1">Production systems</div>
+                </div>
+                
+                <div class="text-center group">
+                    <div class="text-4xl font-bold text-green-400 mb-2 group-hover:scale-110 transition-transform duration-300">24/7</div>
+                    <div class="text-slate-600 dark:text-neutral-400 font-medium">Support Available</div>
+                    <div class="text-sm text-slate-500 dark:text-neutral-500 mt-1">Global coverage</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Services Section -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-bold text-slate-800 dark:text-white mb-6">Core Services</h2>
+                <p class="text-xl text-slate-600 dark:text-neutral-400 max-w-3xl mx-auto">
+                    Comprehensive technology solutions designed for enterprise-scale challenges
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="group p-8 glass-effect rounded-2xl hover-lift border border-white/5">
+                    <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-white mb-4">Full-Stack Development</h3>
+                    <p class="text-neutral-400 leading-relaxed mb-6">
+                        End-to-end application development with modern architectures, 
+                        microservices, and cloud-native deployment strategies.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-primary-500/20 text-primary-400 text-sm rounded-lg border border-primary-500/30">React</span>
+                        <span class="px-3 py-1 bg-blue-500/20 text-blue-400 text-sm rounded-lg border border-blue-500/30">Node.js</span>
+                        <span class="px-3 py-1 bg-purple-500/20 text-purple-400 text-sm rounded-lg border border-purple-500/30">Python</span>
+                    </div>
+                </div>
+                
+                <div class="group p-8 glass-effect rounded-2xl hover-lift border border-white/5">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-white mb-4">Enterprise Architecture</h3>
+                    <p class="text-neutral-400 leading-relaxed mb-6">
+                        Scalable system design, cloud infrastructure, and DevOps 
+                        implementation for mission-critical business applications.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-blue-500/20 text-blue-400 text-sm rounded-lg border border-blue-500/30">AWS</span>
+                        <span class="px-3 py-1 bg-green-500/20 text-green-400 text-sm rounded-lg border border-green-500/30">Docker</span>
+                        <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 text-sm rounded-lg border border-yellow-500/30">Kubernetes</span>
+                    </div>
+                </div>
+                
+                <div class="group p-8 glass-effect rounded-2xl hover-lift border border-white/5">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-white mb-4">Technology Consulting</h3>
+                    <p class="text-neutral-400 leading-relaxed mb-6">
+                        Strategic technology guidance, digital transformation, 
+                        and innovation consulting for forward-thinking organizations.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-purple-500/20 text-purple-400 text-sm rounded-lg border border-purple-500/30">Strategy</span>
+                        <span class="px-3 py-1 bg-pink-500/20 text-pink-400 text-sm rounded-lg border border-pink-500/30">Innovation</span>
+                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-400 text-sm rounded-lg border border-indigo-500/30">Transformation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Featured Work -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-bold text-white mb-6">Featured Work</h2>
+                <p class="text-xl text-neutral-400 max-w-3xl mx-auto">
+                    A glimpse into transformative projects that have reshaped industries
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- AML Engine -->
+                <div class="group relative overflow-hidden rounded-2xl glass-effect border border-white/5">
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <div class="relative p-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white">AML Engine</h3>
+                                    <p class="text-primary-400 text-sm">Financial Compliance Platform</p>
+                                </div>
+                            </div>
+                            <span class="px-3 py-1 bg-green-500/20 text-green-400 text-xs rounded-full border border-green-500/30">Live Production</span>
+                        </div>
+                        
+                        <p class="text-neutral-300 mb-6 leading-relaxed">
+                            Enterprise-grade financial compliance system processing millions of transactions daily with advanced ML algorithms. 
+                            Built with microservices architecture and real-time monitoring capabilities.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-primary-500/20 text-primary-400 text-sm rounded-lg border border-primary-500/30">Java Spring Boot</span>
+                            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 text-sm rounded-lg border border-blue-500/30">Microservices</span>
+                            <span class="px-3 py-1 bg-purple-500/20 text-purple-400 text-sm rounded-lg border border-purple-500/30">TensorFlow</span>
+                        </div>
+                        
+                        <div class="flex gap-3">
+                            <a href="projects/aml-engine.html" class="inline-flex items-center px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium rounded-lg transition-all duration-300">
+                                <span class="mr-2">View Project</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </a>
+                            <a href="#" class="inline-flex items-center px-4 py-2 border border-primary-500/30 text-primary-400 text-sm font-medium rounded-lg hover:bg-primary-500/10 transition-all duration-300">
+                                <span class="mr-2">GitHub</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- IoT Automation Hub -->
+                <div class="group relative overflow-hidden rounded-2xl glass-effect border border-white/5">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <div class="relative p-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v2H8V5z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white">IoT Automation Hub</h3>
+                                    <p class="text-blue-400 text-sm">Smart Home Platform</p>
+                                </div>
+                            </div>
+                            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 text-xs rounded-full border border-blue-500/30">Live Production</span>
+                        </div>
+                        
+                        <p class="text-neutral-300 mb-6 leading-relaxed">
+                            Comprehensive home automation system with AI-powered scheduling, voice control integration, and advanced security features. 
+                            Making your home smarter than your phone.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 text-sm rounded-lg border border-blue-500/30">Python</span>
+                            <span class="px-3 py-1 bg-green-500/20 text-green-400 text-sm rounded-lg border border-green-500/30">TensorFlow</span>
+                            <span class="px-3 py-1 bg-purple-500/20 text-purple-400 text-sm rounded-lg border border-purple-500/30">MQTT</span>
+                        </div>
+                        
+                        <div class="flex gap-3">
+                            <a href="projects/iot-hub.html" class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-all duration-300">
+                                <span class="mr-2">View Project</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </a>
+                            <a href="#" class="inline-flex items-center px-4 py-2 border border-blue-500/30 text-blue-400 text-sm font-medium rounded-lg hover:bg-blue-500/10 transition-all duration-300">
+                                <span class="mr-2">GitHub</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Data Analytics Platform -->
+                <div class="group relative overflow-hidden rounded-2xl glass-effect border border-white/5">
+                    <div class="absolute inset-0 bg-gradient-to-br from-green-500/20 to-teal-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <div class="relative p-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white">Data Analytics Platform</h3>
+                                    <p class="text-green-400 text-sm">Business Intelligence Solution</p>
+                                </div>
+                            </div>
+                            <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 text-xs rounded-full border border-yellow-500/30">In Development</span>
+                        </div>
+                        
+                        <p class="text-neutral-300 mb-6 leading-relaxed">
+                            Advanced business intelligence platform with real-time dashboards and predictive analytics capabilities. 
+                            Data is the new oil, but I'm the refinery.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-green-500/20 text-green-400 text-sm rounded-lg border border-green-500/30">Python</span>
+                            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 text-sm rounded-lg border border-blue-500/30">FastAPI</span>
+                            <span class="px-3 py-1 bg-purple-500/20 text-purple-400 text-sm rounded-lg border border-purple-500/30">TensorFlow</span>
+                        </div>
+                        
+                        <div class="flex gap-3">
+                            <a href="projects/data-analytics.html" class="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-all duration-300">
+                                <span class="mr-2">View Project</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </a>
+                            <a href="#" class="inline-flex items-center px-4 py-2 border border-green-500/30 text-green-400 text-sm font-medium rounded-lg hover:bg-green-500/10 transition-all duration-300">
+                                <span class="mr-2">GitHub</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Banking App -->
+                <div class="group relative overflow-hidden rounded-2xl glass-effect border border-white/5">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <div class="relative p-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white">Mobile Banking App</h3>
+                                    <p class="text-purple-400 text-sm">FinTech Solution</p>
+                                </div>
+                            </div>
+                            <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 text-xs rounded-full border border-yellow-500/30">In Development</span>
+                        </div>
+                        
+                        <p class="text-neutral-300 mb-6 leading-relaxed">
+                            Modern mobile banking application with biometric authentication and comprehensive financial management tools. 
+                            Banking should be as easy as ordering coffee. Actually, easier.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-3 py-1 bg-purple-500/20 text-purple-400 text-sm rounded-lg border border-purple-500/30">React Native</span>
+                            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 text-sm rounded-lg border border-blue-500/30">Node.js</span>
+                            <span class="px-3 py-1 bg-green-500/20 text-green-400 text-sm rounded-lg border border-green-500/30">MongoDB</span>
+                        </div>
+                        
+                        <div class="flex gap-3">
+                            <a href="projects/mobile-banking.html" class="inline-flex items-center px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition-all duration-300">
+                                <span class="mr-2">View Project</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </a>
+                            <a href="#" class="inline-flex items-center px-4 py-2 border border-purple-500/30 text-purple-400 text-sm font-medium rounded-lg hover:bg-purple-500/10 transition-all duration-300">
+                                <span class="mr-2">GitHub</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Feed Section -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-bold text-slate-800 dark:text-white mb-6">Latest Insights & News</h2>
+                <p class="text-xl text-slate-600 dark:text-neutral-400 max-w-3xl mx-auto">
+                    Stay updated with the latest technology trends, industry insights, development updates, and financial markets
+                </p>
+            </div>
+            
+            <!-- Stock Market Overview -->
+            <div class="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border border-green-200 dark:border-green-800 rounded-2xl p-6 mb-12 shadow-sm">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-2xl font-bold text-slate-800 dark:text-white flex items-center">
+                        <svg class="w-6 h-6 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        </svg>
+                        Market Overview
+                    </h3>
+                    <span class="text-sm text-slate-500 dark:text-neutral-400">Live Updates</span>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-6">
+                    <!-- Major Indices -->
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-lg border border-green-200 dark:border-green-700">
+                        <div class="text-sm text-slate-600 dark:text-neutral-400 mb-1">S&P 500</div>
+                        <div class="text-lg font-bold text-slate-800 dark:text-white">4,567.89</div>
+                        <div class="text-sm text-green-600 font-medium">+1.24%</div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-lg border border-green-200 dark:border-green-700">
+                        <div class="text-sm text-slate-600 dark:text-neutral-400 mb-1">NASDAQ</div>
+                        <div class="text-lg font-bold text-slate-800 dark:text-white">14,234.56</div>
+                        <div class="text-sm text-green-600 font-medium">+2.15%</div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-lg border border-green-200 dark:border-green-700">
+                        <div class="text-sm text-slate-600 dark:text-neutral-400 mb-1">DOW</div>
+                        <div class="text-lg font-bold text-slate-800 dark:text-white">35,678.90</div>
+                        <div class="text-sm text-red-600 font-medium">-0.45%</div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-lg border border-green-200 dark:border-green-700">
+                        <div class="text-sm text-slate-600 dark:text-neutral-400 mb-1">BTC/USD</div>
+                        <div class="text-lg font-bold text-slate-800 dark:text-white">$43,567</div>
+                        <div class="text-sm text-green-600 font-medium">+3.67%</div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-lg border border-green-200 dark:border-green-700">
+                        <div class="text-sm text-slate-600 dark:text-neutral-400 mb-1">ETH/USD</div>
+                        <div class="text-lg font-bold text-slate-800 dark:text-white">$2,456</div>
+                        <div class="text-sm text-green-600 font-medium">+5.23%</div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-lg border border-green-200 dark:border-green-700">
+                        <div class="text-sm text-slate-600 dark:text-neutral-400 mb-1">VIX</div>
+                        <div class="text-lg font-bold text-slate-800 dark:text-white">18.45</div>
+                        <div class="text-sm text-red-600 font-medium">-12.34%</div>
+                    </div>
+                </div>
+                
+                <!-- Trending Stocks -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-lg border border-green-200 dark:border-green-700">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-semibold text-slate-800 dark:text-white">AAPL</span>
+                            <span class="text-sm text-green-600 font-medium">+2.34%</span>
+                        </div>
+                        <div class="text-lg font-bold text-slate-800 dark:text-white">$189.45</div>
+                        <div class="text-xs text-slate-500 dark:text-neutral-400">Apple Inc.</div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-lg border border-green-200 dark:border-green-700">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-semibold text-slate-800 dark:text-white">MSFT</span>
+                            <span class="text-sm text-green-600 font-medium">+1.87%</span>
+                        </div>
+                        <div class="text-lg font-bold text-slate-800 dark:text-white">$378.92</div>
+                        <div class="text-xs text-slate-500 dark:text-neutral-400">Microsoft Corp.</div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-lg border border-green-200 dark:border-green-700">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-semibold text-slate-800 dark:text-white">NVDA</span>
+                            <span class="text-sm text-green-600 font-medium">+4.56%</span>
+                        </div>
+                        <div class="text-lg font-bold text-slate-800 dark:text-white">$485.67</div>
+                        <div class="text-xs text-slate-500 dark:text-neutral-400">NVIDIA Corp.</div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-lg border border-green-200 dark:border-green-700">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-semibold text-slate-800 dark:text-white">TSLA</span>
+                            <span class="text-sm text-red-600 font-medium">-1.23%</span>
+                        </div>
+                        <div class="text-lg font-bold text-slate-800 dark:text-white">$245.78</div>
+                        <div class="text-xs text-slate-500 dark:text-neutral-400">Tesla Inc.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- News Filter Bar -->
+            <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-6 mb-8 shadow-sm">
+                <div class="flex flex-wrap gap-4 items-center justify-between">
+                    <!-- Search Bar -->
+                    <div class="flex-1 max-w-md">
+                        <div class="relative">
+                            <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                            <input 
+                                type="text" 
+                                id="news-search" 
+                                placeholder="Search news..." 
+                                class="w-full pl-10 pr-4 py-2 border border-slate-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-700 text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                            >
+                        </div>
+                    </div>
+                    
+                    <!-- Category Tabs -->
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="filterNews('')" class="news-category-btn active px-4 py-2 text-sm font-medium rounded-md transition-colors">
+                            All
+                        </button>
+                        <button onclick="filterNews('tech')" class="news-category-btn px-4 py-2 text-sm font-medium rounded-md transition-colors">
+                            Technology
+                        </button>
+                        <button onclick="filterNews('business')" class="news-category-btn px-4 py-2 text-sm font-medium rounded-md transition-colors">
+                            Business
+                        </button>
+                        <button onclick="filterNews('finance')" class="news-category-btn px-4 py-2 text-sm font-medium rounded-md transition-colors">
+                            Finance
+                        </button>
+                        <button onclick="filterNews('ai')" class="news-category-btn px-4 py-2 text-sm font-medium rounded-md transition-colors">
+                            AI & ML
+                        </button>
+                        <button onclick="filterNews('development')" class="news-category-btn px-4 py-2 text-sm font-medium rounded-md transition-colors">
+                            Development
+                        </button>
+                        <button onclick="filterNews('crypto')" class="news-category-btn px-4 py-2 text-sm font-medium rounded-md transition-colors">
+                            Crypto
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- News Grid -->
+            <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <!-- News cards will be populated here -->
+            </div>
+            
+            <!-- Load More Button -->
+            <div class="text-center">
+                <button id="load-more-btn" onclick="loadMoreNews()" class="px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/25 transform hover:scale-105">
+                    Load More News
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV/Resume Section -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-bold text-slate-800 dark:text-white mb-6">Professional Experience & Skills</h2>
+                <p class="text-xl text-slate-600 dark:text-neutral-400 max-w-3xl mx-auto">
+                    A comprehensive overview of my technical expertise, professional experience, and achievements
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Experience Timeline -->
+                <div class="space-y-8">
+                    <h3 class="text-2xl font-bold text-slate-800 dark:text-white mb-6">Professional Journey</h3>
+                    
+                    <div class="relative">
+                        <!-- Timeline Line -->
+                        <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary-400 to-blue-500"></div>
+                        
+                        <!-- Experience Items -->
+                        <div class="space-y-8">
+                            <div class="relative flex items-start">
+                                <div class="absolute left-4 w-4 h-4 bg-primary-500 rounded-full border-4 border-white dark:border-slate-800"></div>
+                                <div class="ml-12">
+                                    <h4 class="text-lg font-semibold text-slate-800 dark:text-white">Senior Full-Stack Developer</h4>
+                                    <p class="text-primary-500 font-medium">TechCorp Solutions • 2022 - Present</p>
+                                    <p class="text-slate-600 dark:text-neutral-400 mt-2">
+                                        Leading development of enterprise-scale applications, mentoring junior developers, 
+                                        and architecting scalable solutions for Fortune 500 clients.
+                                    </p>
+                                    <div class="flex flex-wrap gap-2 mt-3">
+                                        <span class="px-2 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs rounded">React</span>
+                                        <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded">Node.js</span>
+                                        <span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs rounded">Python</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="relative flex items-start">
+                                <div class="absolute left-4 w-4 h-4 bg-blue-500 rounded-full border-4 border-white dark:border-slate-800"></div>
+                                <div class="ml-12">
+                                    <h4 class="text-lg font-semibold text-slate-800 dark:text-white">System Architect</h4>
+                                    <p class="text-blue-500 font-medium">InnovateTech • 2020 - 2022</p>
+                                    <p class="text-slate-600 dark:text-neutral-400 mt-2">
+                                        Designed and implemented microservices architectures, cloud-native solutions, 
+                                        and enterprise integration patterns for high-traffic applications.
+                                    </p>
+                                    <div class="flex flex-wrap gap-2 mt-3">
+                                        <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded">AWS</span>
+                                        <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-xs rounded">Docker</span>
+                                        <span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs rounded">Kubernetes</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="relative flex items-start">
+                                <div class="absolute left-4 w-4 h-4 bg-green-500 rounded-full border-4 border-white dark:border-slate-800"></div>
+                                <div class="ml-12">
+                                    <h4 class="text-lg font-semibold text-slate-800 dark:text-white">Full-Stack Developer</h4>
+                                    <p class="text-green-500 font-medium">StartupHub • 2018 - 2020</p>
+                                    <p class="text-slate-600 dark:text-neutral-400 mt-2">
+                                        Built MVP applications from concept to production, working with agile teams 
+                                        and implementing modern development practices.
+                                    </p>
+                                    <div class="flex flex-wrap gap-2 mt-3">
+                                        <span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs rounded">Vue.js</span>
+                                        <span class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 text-xs rounded">PHP</span>
+                                        <span class="px-2 py-1 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-xs rounded">Laravel</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Skills & Certifications -->
+                <div class="space-y-8">
+                    <h3 class="text-2xl font-bold text-slate-800 dark:text-white mb-6">Technical Expertise</h3>
+                    
+                    <!-- Skills Grid -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-slate-800 p-4 rounded-lg border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-semibold text-slate-800 dark:text-white mb-3">Frontend</h4>
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-slate-600 dark:text-neutral-400">React/Next.js</span>
+                                    <span class="text-sm font-medium text-primary-600">95%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+                                    <div class="bg-primary-500 h-2 rounded-full" style="width: 95%"></div>
+                                </div>
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-slate-600 dark:text-neutral-400">Vue.js</span>
+                                    <span class="text-sm font-medium text-blue-600">90%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+                                    <div class="bg-blue-500 h-2 rounded-full" style="width: 90%"></div>
+                                </div>
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-slate-600 dark:text-neutral-400">TypeScript</span>
+                                    <span class="text-sm font-medium text-green-600">88%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 88%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-slate-800 p-4 rounded-lg border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-semibold text-slate-800 dark:text-white mb-3">Backend</h4>
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-slate-600 dark:text-neutral-400">Node.js</span>
+                                    <span class="text-sm font-medium text-primary-600">92%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+                                    <div class="bg-primary-500 h-2 rounded-full" style="width: 92%"></div>
+                                </div>
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-slate-600 dark:text-neutral-400">Python</span>
+                                    <span class="text-sm font-medium text-blue-600">85%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+                                    <div class="bg-blue-500 h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-slate-600 dark:text-neutral-400">Java</span>
+                                    <span class="text-sm font-medium text-green-600">80%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Certifications -->
+                    <div class="bg-gradient-to-r from-primary-50 to-blue-50 dark:from-primary-900/20 dark:to-blue-900/20 p-6 rounded-lg border border-primary-200 dark:border-primary-800">
+                        <h4 class="font-semibold text-slate-800 dark:text-white mb-4">Certifications & Achievements</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <span class="text-sm text-slate-700 dark:text-neutral-300">AWS Certified Solutions Architect</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <span class="text-sm text-slate-700 dark:text-neutral-300">Google Cloud Professional Developer</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></div>
+                                </div>
+                                <span class="text-sm text-slate-700 dark:text-neutral-300">Microsoft Azure Developer Associate</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Download CV Button -->
+                    <div class="text-center">
+                        <a href="assets/cv/olalekan-adeojo-resume.pdf" download class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-500 to-blue-600 text-white font-semibold rounded-xl hover:from-primary-600 hover:to-blue-700 transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/25 transform hover:scale-105">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            Download Full CV
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Insights Section -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-bold text-slate-800 dark:text-white mb-6">Industry Insights & Thought Leadership</h2>
+                <p class="text-xl text-slate-600 dark:text-neutral-400 max-w-3xl mx-auto">
+                    Deep dive into technology trends, architectural patterns, and industry best practices
+                </p>
+            </div>
+            
+            <!-- Featured Insights Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <!-- Featured Article 1 -->
+                <div class="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-200 dark:border-slate-700">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=250&fit=crop" alt="AI in Enterprise" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="px-3 py-1 bg-primary-500 text-white text-xs font-medium rounded-full">Featured</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2 text-sm text-slate-500 dark:text-neutral-400 mb-3">
+                            <span>AI & ML</span>
+                            <span>•</span>
+                            <span>5 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3 group-hover:text-primary-600 transition-colors">
+                            The Future of AI in Enterprise Development
+                        </h3>
+                        <p class="text-slate-600 dark:text-neutral-400 mb-4 line-clamp-3">
+                            Exploring how artificial intelligence is transforming the way we build and deploy enterprise applications, 
+                            from automated testing to intelligent deployment strategies.
+                        </p>
+                        <a href="#" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium group-hover:translate-x-1 transition-transform">
+                            Read Full Article
+                            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Featured Article 2 -->
+                <div class="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-200 dark:border-slate-700">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d3080a8a?w=400&h=250&fit=crop" alt="Microservices" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="px-3 py-1 bg-blue-500 text-white text-xs font-medium rounded-full">Trending</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2 text-sm text-slate-500 dark:text-neutral-400 mb-3">
+                            <span>Architecture</span>
+                            <span>•</span>
+                            <span>8 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3 group-hover:text-blue-600 transition-colors">
+                            Microservices: From Monolith to Scalable Architecture
+                        </h3>
+                        <p class="text-slate-600 dark:text-neutral-400 mb-4 line-clamp-3">
+                            A comprehensive guide to transforming legacy monolithic applications into modern, 
+                            scalable microservices architectures with real-world examples.
+                        </p>
+                        <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium group-hover:translate-x-1 transition-transform">
+                            Read Full Article
+                            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Featured Article 3 -->
+                <div class="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-200 dark:border-slate-700">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=250&fit=crop" alt="Cloud Native" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4">
+                            <span class="px-3 py-1 bg-green-500 text-white text-xs font-medium rounded-full">New</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2 text-sm text-slate-500 dark:text-neutral-400 mb-3">
+                            <span>Cloud</span>
+                            <span>•</span>
+                            <span>6 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-3 group-hover:text-green-600 transition-colors">
+                            Cloud-Native Development: Best Practices for 2024
+                        </h3>
+                        <p class="text-slate-600 dark:text-neutral-400 mb-4 line-clamp-3">
+                            Discover the latest cloud-native development practices, from containerization strategies 
+                            to serverless architectures and everything in between.
+                        </p>
+                        <a href="#" class="inline-flex items-center text-green-600 hover:text-green-700 font-medium group-hover:translate-x-1 transition-transform">
+                            Read Full Article
+                            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Insights Categories -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="bg-gradient-to-br from-primary-50 to-blue-50 dark:from-primary-900/20 dark:to-blue-900/20 p-6 rounded-xl border border-primary-200 dark:border-primary-800 text-center group hover:scale-105 transition-transform duration-300">
+                    <div class="w-16 h-16 bg-primary-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-slate-800 dark:text-white mb-2">Technology Trends</h4>
+                    <p class="text-sm text-slate-600 dark:text-neutral-400">Latest developments in software engineering and emerging technologies</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 p-6 rounded-xl border border-green-200 dark:border-green-800 text-center group hover:scale-105 transition-transform duration-300">
+                    <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-slate-800 dark:text-white mb-2">Architecture Patterns</h4>
+                    <p class="text-sm text-slate-600 dark:text-neutral-400">Best practices for building scalable and maintainable systems</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 p-6 rounded-xl border border-purple-200 dark:border-purple-800 text-center group hover:scale-105 transition-transform duration-300">
+                    <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-slate-800 dark:text-white mb-2">Innovation Insights</h4>
+                    <p class="text-sm text-slate-600 dark:text-neutral-400">Cutting-edge approaches to problem-solving and creativity</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 p-6 rounded-xl border border-yellow-200 dark:border-yellow-800 text-center group hover:scale-105 transition-transform duration-300">
+                    <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-slate-800 dark:text-white mb-2">Industry Analysis</h4>
+                    <p class="text-sm text-slate-600 dark:text-neutral-400">Deep dives into market trends and business technology insights</p>
+                </div>
+            </div>
+            
+            <!-- Call to Action for Insights -->
+            <div class="text-center">
+                <a href="blog/" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-500 to-blue-600 text-white font-semibold rounded-xl hover:from-primary-600 hover:to-blue-700 transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/25 transform hover:scale-105">
+                    <span class="mr-2">Explore All Insights</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-24 relative">
+        <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <div class="glass-effect rounded-3xl p-12 border border-slate-200/20 dark:border-white/5">
+                <h2 class="text-5xl font-bold text-slate-800 dark:text-white mb-6">Ready to Transform Your Business?</h2>
+                <p class="text-xl text-slate-600 dark:text-neutral-300 mb-8 leading-relaxed">
+                    Let's discuss how we can build the technology foundation 
+                    that will drive your organization's next phase of growth.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <a href="contact.html" class="px-8 py-4 bg-gradient-to-r from-primary-500 to-blue-600 text-white font-semibold rounded-xl hover:from-primary-600 hover:to-blue-700 transition-all duration-300 hover:shadow-2xl hover:shadow-primary-500/25 transform hover:scale-105">
+                        Start Conversation
+                    </a>
+                    <a href="about.html" class="px-8 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 hover:border-white/40 transition-all duration-300 backdrop-blur-sm">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 border-t border-slate-200 dark:border-white/10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <span class="text-2xl font-bold text-gradient mb-4 block">leizor.dev</span>
+                    <p class="text-slate-600 dark:text-neutral-400 text-sm leading-relaxed">
+                        Building digital solutions that drive business transformation and innovation.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-slate-800 dark:text-white font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm text-slate-600 dark:text-neutral-400">
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">Full-Stack Development</a></li>
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">Enterprise Architecture</a></li>
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">Technology Consulting</a></li>
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">Cloud Solutions</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-slate-800 dark:text-white font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-slate-600 dark:text-neutral-400">
+                        <li><a href="about.html" class="hover:text-primary-400 transition-colors">About</a></li>
+                        <li><a href="work.html" class="hover:text-primary-400 transition-colors">Work</a></li>
+                        <li><a href="blog/" class="hover:text-primary-400 transition-colors">Insights</a></li>
+                        <li><a href="contact.html" class="hover:text-primary-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-slate-800 dark:text-white font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-sm text-slate-600 dark:text-neutral-400">
+                        <li><a href="https://linkedin.com/in/leizor" target="_blank" class="hover:text-primary-400 transition-colors">LinkedIn</a></li>
+                        <li><a href="https://github.com/leizor" target="_blank" class="hover:text-primary-400 transition-colors">GitHub</a></li>
+                        <li><a href="https://twitter.com/leizor_dev" target="_blank" class="hover:text-primary-400 transition-colors">Twitter</a></li>
+                        <li><a href="mailto:hello@leizor.dev" class="hover:text-primary-400 transition-colors">Email</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-slate-200 dark:border-white/10 text-center">
+                <p class="text-slate-600 dark:text-neutral-400 text-sm">
+                    &copy; 2024 leizor Dev. All rights reserved. Building the future, one line of code at a time.
+                    <br><span class="text-primary-400">Don't worry, I'm human — and probably debugging with caffeine right now.</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sophisticated scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections for animation
+            document.querySelectorAll('section').forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(50px)';
+                section.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+                observer.observe(section);
+            });
+
+            // Parallax effect for background elements
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.absolute');
+                
+                parallaxElements.forEach(element => {
+                    const speed = 0.5;
+                    element.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            });
+
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+
+
+        // News Feed Functionality
+        let currentNewsPage = 1;
+        let currentCategory = '';
+        let currentSearch = '';
+        let allNews = [];
+
+        // Sample news data (in a real app, this would come from an API)
+        const sampleNews = [
+            {
+                id: 1,
+                title: "The Future of AI in Enterprise Development",
+                description: "Exploring how artificial intelligence is transforming the way we build and deploy enterprise applications.",
+                category: "ai",
+                source: "Tech Insights",
+                date: "2024-01-15",
+                image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop"
+            },
+            {
+                id: 2,
+                title: "Microservices Architecture: Best Practices for 2024",
+                description: "A comprehensive guide to building scalable microservices that can handle enterprise-level traffic.",
+                category: "development",
+                source: "Dev Weekly",
+                date: "2024-01-14",
+                image: "https://images.unsplash.com/photo-1555066931-4365d3080a8a?w=400&h=250&fit=crop"
+            },
+            {
+                id: 3,
+                title: "Cloud-Native Development: From Monolith to Microservices",
+                description: "How to transform legacy applications into modern, cloud-native solutions.",
+                category: "tech",
+                source: "Cloud Today",
+                date: "2024-01-13",
+                image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=250&fit=crop"
+            },
+            {
+                id: 4,
+                title: "The Rise of Edge Computing in IoT Applications",
+                description: "Understanding how edge computing is revolutionizing IoT deployments and real-time data processing.",
+                category: "tech",
+                source: "IoT Insights",
+                date: "2024-01-12",
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=250&fit=crop"
+            },
+            {
+                id: 5,
+                title: "Cybersecurity in the Age of AI: New Challenges and Solutions",
+                description: "How AI is both creating new security challenges and providing innovative solutions.",
+                category: "ai",
+                source: "Security Weekly",
+                date: "2024-01-11",
+                image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=250&fit=crop"
+            },
+            {
+                id: 6,
+                title: "Sustainable Software Development: Green Coding Practices",
+                description: "How developers can contribute to environmental sustainability through efficient coding practices.",
+                category: "development",
+                source: "Green Tech",
+                date: "2024-01-10",
+                image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&h=250&fit=crop"
+            },
+            {
+                id: 7,
+                title: "Federal Reserve Signals Potential Rate Cuts in 2024",
+                description: "The Federal Reserve's latest meeting minutes suggest possible interest rate reductions as inflation continues to moderate.",
+                category: "finance",
+                source: "Financial Times",
+                date: "2024-01-15",
+                image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=250&fit=crop"
+            },
+            {
+                id: 8,
+                title: "Tech Stocks Rally on Strong Earnings Reports",
+                description: "Major technology companies report better-than-expected earnings, driving market indices to new highs.",
+                category: "finance",
+                source: "Market Watch",
+                date: "2024-01-15",
+                image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=250&fit=crop"
+            },
+            {
+                id: 9,
+                title: "Bitcoin Surges Past $45,000 as Institutional Adoption Grows",
+                description: "Cryptocurrency markets see significant gains as major financial institutions announce new crypto investment products.",
+                category: "crypto",
+                source: "Crypto News",
+                date: "2024-01-15",
+                image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=400&h=250&fit=crop"
+            },
+            {
+                id: 10,
+                title: "Ethereum 2.0 Upgrade Shows Promising Results",
+                description: "The transition to proof-of-stake consensus mechanism demonstrates improved efficiency and reduced energy consumption.",
+                category: "crypto",
+                source: "Blockchain Weekly",
+                date: "2024-01-14",
+                image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=400&h=250&fit=crop"
+            },
+            {
+                id: 11,
+                title: "Wall Street Prepares for Earnings Season",
+                description: "Analysts expect strong quarterly results from major banks and financial institutions as economic recovery continues.",
+                category: "finance",
+                source: "Wall Street Journal",
+                date: "2024-01-14",
+                image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=250&fit=crop"
+            },
+            {
+                id: 12,
+                title: "DeFi Protocols See Record Trading Volumes",
+                description: "Decentralized finance platforms experience unprecedented growth as traditional finance faces regulatory challenges.",
+                category: "crypto",
+                source: "DeFi Insights",
+                date: "2024-01-13",
+                image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=400&h=250&fit=crop"
+            },
+            {
+                id: 13,
+                title: "Global Markets React to Central Bank Decisions",
+                description: "European Central Bank and Bank of Japan policy announcements create ripple effects across international markets.",
+                category: "finance",
+                source: "Reuters",
+                date: "2024-01-13",
+                image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=250&fit=crop"
+            },
+            {
+                id: 14,
+                title: "NFT Market Shows Signs of Recovery",
+                description: "Non-fungible token sales increase as new use cases emerge in gaming, art, and digital identity.",
+                category: "crypto",
+                source: "NFT Daily",
+                date: "2024-01-12",
+                image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=400&h=250&fit=crop"
+            },
+            {
+                id: 15,
+                title: "Sustainable Investing Gains Momentum",
+                description: "ESG-focused investment strategies attract record capital as investors prioritize environmental and social responsibility.",
+                category: "finance",
+                source: "ESG Today",
+                date: "2024-01-12",
+                image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=250&fit=crop"
+            }
+        ];
+
+        // Initialize news feed
+        function initializeNewsFeed() {
+            allNews = [...sampleNews];
+            renderNews();
+            setupNewsSearch();
+        }
+
+        // Render news cards
+        function renderNews() {
+            const newsGrid = document.getElementById('news-grid');
+            const filteredNews = filterNewsByCategoryAndSearch(allNews, currentCategory, currentSearch);
+            
+            if (filteredNews.length === 0) {
+                newsGrid.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <p class="text-slate-600 dark:text-neutral-400 text-lg">
+                            No news found. Try adjusting your filters or search terms.
+                        </p>
+                    </div>
+                `;
+                return;
+            }
+
+            const newsHTML = filteredNews.map(news => `
+                <div class="news-card rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                    <div class="relative h-48 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800">
+                        <img src="${news.image}" alt="${news.title}" class="w-full h-full object-cover">
+                        <div class="absolute top-3 left-3">
+                            <span class="px-2 py-1 bg-primary-500/90 text-white text-xs font-medium rounded">
+                                ${news.category.toUpperCase()}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-slate-800 dark:text-white mb-2 line-clamp-2">
+                            ${news.title}
+                        </h3>
+                        <p class="text-slate-600 dark:text-neutral-400 text-sm mb-4 line-clamp-3">
+                            ${news.description}
+                        </p>
+                        <div class="flex items-center justify-between text-xs text-slate-500 dark:text-neutral-500 mb-4">
+                            <span>${news.source}</span>
+                            <span>${formatDate(news.date)}</span>
+                        </div>
+                        <button onclick="openNewsArticle(${news.id})" class="w-full px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium rounded-md transition-colors">
+                            Read More
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            newsGrid.innerHTML = newsHTML;
+        }
+
+        // Filter news by category and search
+        function filterNewsByCategoryAndSearch(news, category, search) {
+            return news.filter(item => {
+                const matchesCategory = !category || item.category === category;
+                const matchesSearch = !search || 
+                    item.title.toLowerCase().includes(search.toLowerCase()) ||
+                    item.description.toLowerCase().includes(search.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
+        }
+
+        // Filter news by category
+        function filterNews(category) {
+            currentCategory = category;
+            currentNewsPage = 1;
+            
+            // Update active category button
+            document.querySelectorAll('.news-category-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-primary-600', 'text-white');
+                btn.classList.add('bg-slate-200', 'text-slate-700', 'dark:bg-slate-700', 'dark:text-slate-300');
+            });
+            
+            const activeBtn = event.target;
+            activeBtn.classList.remove('bg-slate-200', 'text-slate-700', 'dark:bg-slate-700', 'dark:text-slate-300');
+            activeBtn.classList.add('active', 'bg-primary-600', 'text-white');
+            
+            renderNews();
+        }
+
+        // Setup news search
+        function setupNewsSearch() {
+            const searchInput = document.getElementById('news-search');
+            let searchTimeout;
+            
+            searchInput.addEventListener('input', (e) => {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    currentSearch = e.target.value.trim();
+                    currentNewsPage = 1;
+                    renderNews();
+                }, 300);
+            });
+        }
+
+        // Load more news
+        function loadMoreNews() {
+            // In a real app, this would fetch more news from an API
+            currentNewsPage++;
+            // For demo purposes, we'll just show a message
+            alert('Loading more news... (This would fetch from an API in production)');
+        }
+
+        // Open news article
+        function openNewsArticle(newsId) {
+            const news = allNews.find(n => n.id === newsId);
+            if (news) {
+                // In a real app, this would open the full article
+                alert(`Opening: ${news.title}\n\nThis would navigate to the full article in production.`);
+            }
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            });
+        }
+
+        // Initialize news feed when page loads
+        document.addEventListener('DOMContentLoaded', async function() {
+            initializeNewsFeed();
+            await initializeFeedPanel();
+        });
+
+        // Feed Panel Functionality
+        let currentFeedCategory = 'top';
+        let feedPanelOpen = false;
+
+        // API configuration
+        const API_CONFIG = {
+            // Main news API endpoint
+            NEWS_API: '/api/news',
+            // Free APIs that don't require keys
+            FREE_APIS: {
+                // News from NewsAPI (free tier)
+                NEWSAPI_FREE: 'https://newsapi.org/v2/top-headlines?country=us&apiKey=demo',
+                // Sports news from ESPN (RSS)
+                ESPN_SPORTS: 'https://www.espn.com/espn/rss/news',
+                // Tech news from TechCrunch (RSS)
+                TECHCRUNCH: 'https://techcrunch.com/feed/',
+                // Formula 1 news (RSS)
+                F1_NEWS: 'https://www.formula1.com/en/latest/all.xml',
+                // Market data from Alpha Vantage (free tier)
+                ALPHA_VANTAGE: 'https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey=demo'
+            }
+        };
+
+        // Feed data structure - will be populated by API calls
+        let feedData = {
+            top: [],
+            sports: [],
+            markets: [],
+            tech: [],
+            f1: []
+        };
+
+        // API Functions
+        async function fetchNewsFromAPI(category = 'top', page = 1) {
+            try {
+                // Try the main news API first
+                const response = await fetch(`${API_CONFIG.NEWS_API}?category=${category}&page=${page}&pageSize=10`);
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    return data.items || [];
+                } else {
+                    return await fetchFallbackNews(category);
+                }
+            } catch (error) {
+                return await fetchFallbackNews(category);
+            }
+        }
+
+        async function fetchFallbackNews(category) {
+            try {
+                let fallbackData = [];
+                
+                // Use different APIs based on category
+                switch (category) {
+                    case 'top':
+                        // Try NewsAPI free tier
+                        const newsResponse = await fetch(API_CONFIG.FREE_APIS.NEWSAPI_FREE);
+                        if (newsResponse.ok) {
+                            const newsData = await newsResponse.json();
+                            fallbackData = (newsData.articles || []).slice(0, 5).map(article => ({
+                                id: article.url,
+                                title: article.title,
+                                description: article.description,
+                                source: article.source?.name || 'NewsAPI',
+                                time: formatTimeAgo(new Date(article.publishedAt)),
+                                category: 'top',
+                                image: article.urlToImage || 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop'
+                            }));
+                        }
+                        break;
+                        
+                    case 'sports':
+                        fallbackData = [
+                            {
+                                id: 'sports-1',
+                                title: 'Championship Final Set for Next Week',
+                                description: 'Two top teams will face off in what promises to be an epic championship match.',
+                                source: 'ESPN',
+                                time: '1 hour ago',
+                                category: 'sports',
+                                image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=200&fit=crop'
+                            },
+                            {
+                                id: 'sports-2',
+                                title: 'Record-Breaking Performance at Olympics',
+                                description: 'Athlete sets new world record in stunning Olympic performance.',
+                                source: 'Olympic News',
+                                time: '3 hours ago',
+                                category: 'sports',
+                                image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=200&fit=crop'
+                            }
+                        ];
+                        break;
+                        
+                    case 'markets':
+                        try {
+                            const marketResponse = await fetch(API_CONFIG.FREE_APIS.ALPHA_VANTAGE);
+                            if (marketResponse.ok) {
+                                const marketData = await marketResponse.json();
+                                fallbackData = [
+                                    {
+                                        id: 'markets-1',
+                                        title: 'S&P 500 Hits New All-Time High',
+                                        description: 'Major index reaches unprecedented levels as tech stocks surge.',
+                                        source: 'Market Watch',
+                                        time: '30 minutes ago',
+                                        category: 'markets',
+                                        image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=300&h=200&fit=crop'
+                                    },
+                                    {
+                                        id: 'markets-2',
+                                        title: 'Bitcoin Surges Past $50,000',
+                                        description: 'Cryptocurrency reaches major milestone as institutional adoption grows.',
+                                        source: 'Crypto Daily',
+                                        time: '2 hours ago',
+                                        category: 'markets',
+                                        image: 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=300&h=200&fit=crop'
+                                    }
+                                ];
+                            }
+                        } catch (error) {
+                            // Silent fallback
+                        }
+                        break;
+                        
+                    case 'tech':
+                        fallbackData = [
+                            {
+                                id: 'tech-1',
+                                title: 'AI Breakthrough in Medical Diagnosis',
+                                description: 'New AI system achieves 99% accuracy in early disease detection.',
+                                source: 'TechCrunch',
+                                time: '1 hour ago',
+                                category: 'tech',
+                                image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=300&h=200&fit=crop'
+                            },
+                            {
+                                id: 'tech-2',
+                                title: 'Quantum Computing Milestone Reached',
+                                description: 'Scientists achieve quantum supremacy in computational power.',
+                                source: 'Science Daily',
+                                time: '4 hours ago',
+                                category: 'tech',
+                                image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop'
+                            }
+                        ];
+                        break;
+                        
+                    case 'f1':
+                        fallbackData = [
+                            {
+                                id: 'f1-1',
+                                title: 'Championship Battle Heats Up',
+                                description: 'Title race intensifies as top drivers battle for crucial points.',
+                                source: 'F1 Racing',
+                                time: '2 hours ago',
+                                category: 'f1',
+                                image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=200&fit=crop'
+                            },
+                            {
+                                id: 'f1-2',
+                                title: 'New Team Announcement Expected',
+                                description: 'Formula 1 could welcome new constructor for upcoming season.',
+                                source: 'Motorsport',
+                                time: '6 hours ago',
+                                category: 'f1',
+                                image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=200&fit=crop'
+                            }
+                        ];
+                        break;
+                }
+                
+                return fallbackData;
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function formatTimeAgo(date) {
+            const now = new Date();
+            const diffInMinutes = Math.floor((now - date) / (1000 * 60));
+            
+            if (diffInMinutes < 60) {
+                return `${diffInMinutes} minutes ago`;
+            } else if (diffInMinutes < 1440) {
+                const hours = Math.floor(diffInMinutes / 60);
+                return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+            } else {
+                const days = Math.floor(diffInMinutes / 1440);
+                return `${days} day${days > 1 ? 's' : ''} ago`;
+            }
+        }
+
+        // Load feed data for a category
+        async function loadFeedData(category) {
+            if (feedData[category] && feedData[category].length > 0) {
+                return;
+            }
+            
+            try {
+                const items = await fetchNewsFromAPI(category);
+                feedData[category] = items;
+            } catch (error) {
+                feedData[category] = [];
+            }
+        }
+
+        // Toggle feed panel
+        function toggleFeedPanel() {
+            const overlay = document.getElementById('feed-overlay');
+            const panel = document.getElementById('feed-panel');
+            
+            if (feedPanelOpen) {
+                // Close panel
+                overlay.classList.add('hidden');
+                panel.classList.remove('feed-panel-open');
+                feedPanelOpen = false;
+                document.body.style.overflow = 'auto';
+            } else {
+                // Open panel
+                overlay.classList.remove('hidden');
+                setTimeout(async () => {
+                    overlay.classList.add('feed-overlay-visible');
+                    panel.classList.add('feed-panel-open');
+                    await renderFeedContent(); // Re-render content when opening
+                }, 10);
+                feedPanelOpen = true;
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Switch feed category
+        async function switchFeedCategory(category) {
+            currentFeedCategory = category;
+            
+            // Update active tab
+            document.querySelectorAll('.feed-category-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Render feed content
+            await renderFeedContent();
+        }
+
+        // Render feed content
+        async function renderFeedContent() {
+            const feedContent = document.getElementById('feed-content');
+            if (!feedContent) {
+                return;
+            }
+            
+            // Show loading state
+            feedContent.innerHTML = `
+                <div class="text-center py-8">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500 mx-auto mb-4"></div>
+                    <p class="text-slate-500 dark:text-neutral-400">Loading ${currentFeedCategory} news...</p>
+                </div>
+            `;
+            
+            // Load data for the current category
+            await loadFeedData(currentFeedCategory);
+            
+            const items = feedData[currentFeedCategory] || [];
+            
+            if (items.length === 0) {
+                feedContent.innerHTML = `
+                    <div class="text-center py-8">
+                        <p class="text-slate-500 dark:text-neutral-400">No content available for this category.</p>
+                        <button onclick="loadFeedData('${currentFeedCategory}'); renderFeedContent();" class="mt-4 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
+                            Retry
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            const feedHTML = items.map(item => `
+                <div class="feed-item bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                    <div class="relative h-32 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800">
+                        <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">
+                        <div class="absolute top-2 left-2">
+                            <span class="px-2 py-1 bg-primary-500/90 text-white text-xs font-medium rounded">
+                                ${item.category.toUpperCase()}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-sm font-semibold text-slate-800 dark:text-white mb-2 line-clamp-2">
+                            ${item.title}
+                        </h3>
+                        <p class="text-xs text-slate-600 dark:text-neutral-400 mb-3 line-clamp-2">
+                            ${item.description}
+                        </p>
+                        <div class="flex items-center justify-between text-xs text-slate-500 dark:text-neutral-500">
+                            <span>${item.source}</span>
+                            <span>${item.time}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            feedContent.innerHTML = feedHTML;
+        }
+
+        // Initialize feed panel
+        async function initializeFeedPanel() {
+            // Ensure the feed content element exists
+            const feedContent = document.getElementById('feed-content');
+            if (!feedContent) {
+                return;
+            }
+            
+            await renderFeedContent();
+            
+            // Close panel when clicking overlay
+            const feedOverlay = document.getElementById('feed-overlay');
+            if (feedOverlay) {
+                feedOverlay.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        toggleFeedPanel();
+                    }
+                });
+            }
+            
+            // Close panel with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    if (feedPanelOpen) {
+                        toggleFeedPanel();
+                    }
+                    if (mobileMenuOpen) {
+                        toggleMobileMenu();
+                    }
+                }
+            });
+        }
+
+        // Mobile Menu Functionality
+        let mobileMenuOpen = false;
+
+        function toggleMobileMenu() {
+            const overlay = document.getElementById('mobile-menu-overlay');
+            const menu = overlay.querySelector('div');
+            
+            if (mobileMenuOpen) {
+                // Close menu
+                overlay.classList.add('hidden');
+                menu.classList.remove('mobile-menu-open');
+                mobileMenuOpen = false;
+                document.body.style.overflow = 'auto';
+            } else {
+                // Open menu
+                overlay.classList.remove('hidden');
+                setTimeout(() => {
+                    menu.classList.add('mobile-menu-open');
+                }, 10);
+                mobileMenuOpen = true;
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Close mobile menu when clicking overlay
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('mobile-menu-overlay').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

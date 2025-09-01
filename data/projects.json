@@ -1,0 +1,327 @@
+{
+  "projects": [
+    {
+      "id": "aml-engine",
+      "title": "AML Engine",
+      "subtitle": "Financial Compliance Platform",
+      "description": "Enterprise-grade financial compliance system processing millions of transactions daily with advanced ML algorithms.",
+      "longDescription": "The AML Engine represents a breakthrough in financial compliance technology, designed to meet the rigorous demands of global financial institutions. This enterprise-grade platform processes millions of transactions daily, utilizing advanced machine learning algorithms to identify suspicious patterns and ensure regulatory compliance.",
+      "category": "Financial Technology",
+      "status": "Production Live",
+      "timeline": "18 Months",
+      "teamSize": "8 Developers",
+      "industry": "Financial Services",
+      "projectType": "Enterprise Platform",
+      "thumbnail": "/assets/projects/aml-cover.png",
+      "screenshots": [
+        {
+          "title": "Transaction Monitoring Dashboard",
+          "description": "Real-time transaction monitoring interface",
+          "image": "/assets/projects/aml-dashboard.png"
+        },
+        {
+          "title": "Risk Analysis Interface",
+          "description": "Advanced risk scoring and analytics",
+          "image": "/assets/projects/aml-analytics.png"
+        }
+      ],
+      "techStack": {
+        "backend": ["Java Spring Boot", "Microservices", "Apache Kafka"],
+        "database": ["PostgreSQL", "Redis", "Elasticsearch"],
+        "ai_ml": ["TensorFlow", "Scikit-learn", "Apache Spark"],
+        "frontend": ["React", "TypeScript", "Tailwind CSS"]
+      },
+      "features": [
+        {
+          "title": "Real-time Monitoring",
+          "description": "Continuous transaction monitoring with sub-second latency, enabling immediate detection and response to suspicious activities.",
+          "icon": "lightning"
+        },
+        {
+          "title": "ML-Powered Detection",
+          "description": "Advanced machine learning algorithms that continuously learn and adapt to new fraud patterns, improving detection accuracy over time.",
+          "icon": "brain"
+        },
+        {
+          "title": "Regulatory Compliance",
+          "description": "Built-in compliance with international AML regulations including FATF, EU directives, and US banking regulations.",
+          "icon": "shield"
+        },
+        {
+          "title": "Advanced Analytics",
+          "description": "Comprehensive reporting and analytics dashboard providing insights into risk patterns, compliance metrics, and system performance.",
+          "icon": "chart"
+        },
+        {
+          "title": "Secure Integration",
+          "description": "Enterprise-grade security with API-first architecture, enabling seamless integration with existing banking systems and third-party services.",
+          "icon": "lock"
+        },
+        {
+          "title": "Scalable Architecture",
+          "description": "Microservices-based architecture designed to handle millions of transactions with horizontal scaling capabilities and fault tolerance.",
+          "icon": "scale"
+        }
+      ],
+      "metrics": {
+        "dailyTransactions": "2M+",
+        "uptime": "99.99%",
+        "responseTime": "<50ms",
+        "accuracy": "98.7%"
+      },
+      "links": {
+        "github": "#",
+        "demo": "#",
+        "caseStudy": "#"
+      },
+      "devQuotes": [
+        "Yeah, I built that. Want one too?",
+        "The Iron Man suit of fraud detection",
+        "Processing transactions faster than you can say 'compliance'"
+      ],
+      "tags": ["Compliance", "Machine Learning", "Microservices", "Financial Services", "Real-time", "Security"]
+    },
+    {
+      "id": "iot-hub",
+      "title": "IoT Automation Hub",
+      "subtitle": "Smart Home Platform",
+      "description": "Comprehensive home automation system with AI-powered scheduling and advanced security features.",
+      "longDescription": "Comprehensive home automation system with AI-powered scheduling, voice control integration, and advanced security features. Enables seamless control of lighting, climate, security, and entertainment systems.",
+      "category": "IoT & Automation",
+      "status": "Production Live",
+      "timeline": "12 Months",
+      "teamSize": "6 Developers",
+      "industry": "Smart Home",
+      "projectType": "Consumer Platform",
+      "thumbnail": "/assets/projects/iot-cover.png",
+      "screenshots": [
+        {
+          "title": "Smart Home Dashboard",
+          "description": "Centralized control interface for all connected devices",
+          "image": "/assets/projects/iot-dashboard.png"
+        },
+        {
+          "title": "AI Scheduling Interface",
+          "description": "Intelligent automation and scheduling system",
+          "image": "/assets/projects/iot-scheduling.png"
+        }
+      ],
+      "techStack": {
+        "backend": ["Python", "TensorFlow", "MQTT"],
+        "hardware": ["ESP32", "Raspberry Pi", "Arduino"],
+        "mobile": ["React Native", "Flutter"],
+        "cloud": ["AWS IoT", "Google Cloud IoT"]
+      },
+      "features": [
+        {
+          "title": "AI-Powered Scheduling",
+          "description": "Machine learning algorithms that learn user preferences and automatically optimize home automation schedules.",
+          "icon": "clock"
+        },
+        {
+          "title": "Voice Control Integration",
+          "description": "Seamless integration with popular voice assistants for hands-free home control.",
+          "icon": "mic"
+        },
+        {
+          "title": "Advanced Security",
+          "description": "Multi-layered security with biometric authentication and encrypted communication protocols.",
+          "icon": "shield"
+        },
+        {
+          "title": "Device Compatibility",
+          "description": "Support for 100+ smart home devices and protocols including Zigbee, Z-Wave, and WiFi.",
+          "icon": "devices"
+        }
+      ],
+      "metrics": {
+        "devicesSupported": "100+",
+        "responseTime": "<100ms",
+        "aiAccuracy": "94.2%",
+        "energySavings": "35%"
+      },
+      "links": {
+        "github": "#",
+        "demo": "#",
+        "appStore": "#"
+      },
+      "devQuotes": [
+        "Don't worry, I'm human — and probably debugging with caffeine right now.",
+        "Making your home smarter than your phone",
+        "Automation so smooth, you'll forget it's there"
+      ],
+      "tags": ["IoT", "Smart Home", "AI/ML", "Automation", "Security", "Mobile"]
+    },
+    {
+      "id": "data-analytics",
+      "title": "Data Analytics Platform",
+      "description": "Advanced business intelligence platform with real-time dashboards and predictive analytics capabilities.",
+      "longDescription": "Advanced business intelligence platform with real-time dashboards, predictive analytics, and automated reporting capabilities. Designed for enterprise organizations requiring deep insights into their data.",
+      "category": "Business Intelligence",
+      "status": "In Development",
+      "timeline": "24 Months",
+      "teamSize": "10 Developers",
+      "industry": "Technology",
+      "projectType": "SaaS Platform",
+      "thumbnail": "/assets/projects/analytics-cover.png",
+      "screenshots": [
+        {
+          "title": "Real-time Dashboard",
+          "description": "Live data visualization and monitoring interface",
+          "image": "/assets/projects/analytics-dashboard.png"
+        },
+        {
+          "title": "Predictive Analytics",
+          "description": "Advanced forecasting and trend analysis tools",
+          "image": "/assets/projects/analytics-predictions.png"
+        }
+      ],
+      "techStack": {
+        "backend": ["Python", "FastAPI", "Celery"],
+        "data": ["PostgreSQL", "Redis", "Elasticsearch"],
+        "ai_ml": ["TensorFlow", "Scikit-learn", "Pandas"],
+        "frontend": ["React", "D3.js", "Chart.js"]
+      },
+      "features": [
+        {
+          "title": "Real-time Dashboards",
+          "description": "Live data visualization with sub-second updates and interactive charts.",
+          "icon": "chart"
+        },
+        {
+          "title": "Predictive Analytics",
+          "description": "Machine learning models for forecasting trends and identifying patterns.",
+          "icon": "crystal-ball"
+        },
+        {
+          "title": "Automated Reporting",
+          "description": "Scheduled reports and alerts delivered via email, Slack, or API.",
+          "icon": "document"
+        },
+        {
+          "title": "Data Integration",
+          "description": "Connect to 50+ data sources including databases, APIs, and cloud services.",
+          "icon": "database"
+        }
+      ],
+      "metrics": {
+        "dataSources": "50+",
+        "processingSpeed": "10x faster",
+        "accuracy": "96.8%",
+        "users": "1000+"
+      },
+      "links": {
+        "github": "#",
+        "demo": "#",
+        "documentation": "#"
+      },
+      "devQuotes": [
+        "Data is the new oil, but I'm the refinery.",
+        "Turning your data into actionable insights",
+        "Analytics so powerful, they'll make you look smart"
+      ],
+      "tags": ["Analytics", "Business Intelligence", "Machine Learning", "Real-time", "Data Visualization", "SaaS"]
+    },
+    {
+      "id": "mobile-banking",
+      "title": "Mobile Banking App",
+      "subtitle": "FinTech Solution",
+      "description": "Modern mobile banking application with biometric authentication and comprehensive financial management tools.",
+      "longDescription": "Modern mobile banking application with biometric authentication, real-time transactions, and comprehensive financial management tools. Built for the digital-first banking experience.",
+      "category": "Financial Technology",
+      "status": "In Development",
+      "timeline": "18 Months",
+      "teamSize": "12 Developers",
+      "industry": "Financial Services",
+      "projectType": "Mobile Application",
+      "thumbnail": "/assets/projects/banking-cover.png",
+      "screenshots": [
+        {
+          "title": "Main Dashboard",
+          "description": "Overview of accounts, balances, and recent transactions",
+          "image": "/assets/projects/banking-dashboard.png"
+        },
+        {
+          "title": "Transaction Interface",
+          "description": "Secure money transfer and payment processing",
+          "image": "/assets/projects/banking-transactions.png"
+        }
+      ],
+      "techStack": {
+        "mobile": ["React Native", "Flutter", "Kotlin"],
+        "backend": ["Node.js", "Express", "TypeScript"],
+        "database": ["MongoDB", "Redis", "PostgreSQL"],
+        "cloud": ["AWS", "Firebase", "Docker"]
+      },
+      "features": [
+        {
+          "title": "Biometric Authentication",
+          "description": "Fingerprint and facial recognition for secure, convenient access.",
+          "icon": "fingerprint"
+        },
+        {
+          "title": "Real-time Transactions",
+          "description": "Instant payment processing and real-time balance updates.",
+          "icon": "clock"
+        },
+        {
+          "title": "Financial Management",
+          "description": "Budgeting tools, expense tracking, and financial insights.",
+          "icon": "calculator"
+        },
+        {
+          "title": "Multi-currency Support",
+          "description": "Support for 20+ currencies with real-time exchange rates.",
+          "icon": "globe"
+        }
+      ],
+      "metrics": {
+        "supportedCurrencies": "20+",
+        "transactionSpeed": "<2 seconds",
+        "securityScore": "A+",
+        "userRating": "4.8/5"
+      },
+      "links": {
+        "github": "#",
+        "demo": "#",
+        "appStore": "#"
+      },
+      "devQuotes": [
+        "Banking should be as easy as ordering coffee. Actually, easier.",
+        "Making money moves as simple as swiping right",
+        "Security so tight, even your mom would approve"
+      ],
+      "tags": ["Mobile", "FinTech", "Banking", "Security", "Biometrics", "React Native"]
+    }
+  ],
+  "categories": [
+    {
+      "id": "financial-technology",
+      "name": "Financial Technology",
+      "description": "Compliance platforms, payment systems, and financial analytics solutions that meet the highest security and regulatory standards.",
+      "icon": "shield",
+      "color": "primary"
+    },
+    {
+      "id": "iot-automation",
+      "name": "IoT & Automation",
+      "description": "Smart home systems, industrial automation, and connected device platforms that leverage AI and machine learning for intelligent control.",
+      "icon": "lightning",
+      "color": "blue"
+    },
+    {
+      "id": "enterprise-solutions",
+      "name": "Enterprise Solutions",
+      "description": "Scalable business applications, workflow automation, and enterprise resource planning systems for large organizations.",
+      "icon": "building",
+      "color": "purple"
+    },
+    {
+      "id": "business-intelligence",
+      "name": "Business Intelligence",
+      "description": "Data analytics platforms, reporting tools, and business intelligence solutions that transform raw data into actionable insights.",
+      "icon": "chart",
+      "color": "green"
+    }
+  ]
+}

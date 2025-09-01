@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Leizor's Lab Access</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #000;
+      font-family: 'Orbitron', sans-serif;
+      overflow: hidden;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .panel {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(ellipse at center, #1e1e1e, #000);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .vault-door {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #1c1c1c;
+      border-left: 4px solid #0f0;
+      border-right: 4px solid #0f0;
+      z-index: 1;
+      transition: transform 1s ease-in-out;
+    }
+
+    .vault-door.open {
+      transform: translateX(100%);
+    }
+
+    .tooltip {
+      font-size: 13px;
+      color: #ccc;
+      background: #111;
+      padding: 6px 12px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      z-index: 3;
+    }
+
+    .knob-container {
+      position: relative;
+      width: 100px;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      z-index: 3;
+    }
+
+    .knob-base {
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle at center, #2b2b2b, #0a0a0a);
+      border: 3px solid #111;
+      border-radius: 50%;
+      box-shadow: inset 2px 2px 4px #111, inset -2px -2px 6px #333;
+      position: absolute;
+      top: 20px;
+      z-index: 2;
+    }
+
+    .lever {
+      width: 30px;
+      height: 120px;
+      background: linear-gradient(to bottom, #bbb, #444);
+      border-radius: 10px;
+      box-shadow: inset -2px -2px 4px rgba(255,255,255,0.1),
+                  inset 2px 2px 5px rgba(0,0,0,0.6),
+                  0 4px 10px rgba(0,0,0,0.4);
+      cursor: grab;
+      position: absolute;
+      top: 10px;
+      z-index: 3;
+      transition: transform 0.2s ease;
+    }
+
+    .access {
+	  color: #0f0;
+	  font-family: 'Courier New', monospace;
+	  font-size: 14px;
+	  background-color: #101010;
+	  padding: 15px;
+	  border-left: 4px solid #0f0;
+	  margin-top: 30px;
+	  white-space: pre-wrap;
+	  display: none;
+	  opacity: 1;
+	}
+
+    @keyframes glow {
+      0% {
+        opacity: 0;
+        text-shadow: none;
+      }
+      100% {
+        opacity: 1;
+        text-shadow: 0 0 5px #0f0, 0 0 15px #0f0, 0 0 30px #0f0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<audio id="unlockSound" src="assets/audio/445100__lezaarth__vault.mp3" preload="auto" onerror="console.log('Sound file not found - proceeding without audio')"></audio>
+
+<div class="panel">
+  <!-- vault-door now under everything -->
+  <div class="vault-door" id="vaultDoor"></div>
+
+  <!-- TOP OF PAGE -->
+  <div class="tooltip">Only the chosen may enter…<br>or just pull this thing.</div>
+
+  <!-- LEVER CONTAINER -->
+  <div class="knob-container">
+    <div class="knob-base"></div>
+    <div id="lever" class="lever"></div>
+  </div>
+
+  <!-- ACCESS GRANTED MESSAGE -->
+  <div id="access" class="access">
+  <pre>
+  [ SYSTEM AUTHENTICATED ]
+  User: leizor
+  Status: ACCESS GRANTED
+  Redirecting to Lab Interface...
+  </pre>
+  </div>
+
+
+    <script>
+      // External Content Recommender
+      function recordInterest(tag) {
+        let tags = JSON.parse(localStorage.getItem("userTags") || "[]");
+        if (!tags.includes(tag)) tags.push(tag);
+        localStorage.setItem("userTags", JSON.stringify(tags.slice(-5)));
+      }
+      
+      window.onload = function () {
+    const lever = document.getElementById('lever');
+    const message = document.getElementById('access');
+    const vaultDoor = document.getElementById('vaultDoor');
+    const sound = document.getElementById('unlockSound');
+    let dragging = false;
+    let startY = 0;
+
+    lever.addEventListener('mousedown', (e) => {
+      dragging = true;
+      startY = e.clientY;
+      lever.style.transition = 'none';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!dragging) return;
+      const deltaY = e.clientY - startY;
+      if (deltaY > 0 && deltaY <= 180) {
+        lever.style.transform = `translateY(${deltaY}px)`;
+      }
+      if (deltaY > 180) {
+        unlockGate();
+      }
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (!dragging) return;
+      dragging = false;
+      lever.style.transition = 'transform 0.3s ease';
+      lever.style.transform = 'translateY(0)';
+    });
+
+    function unlockGate() {
+      lever.style.pointerEvents = 'none';
+      lever.style.transform = 'translateY(180px)';
+      message.style.display = 'block';
+      sound.play();
+      vaultDoor.classList.add('open');
+
+      setTimeout(() => {
+        window.location.href = 'main.html';
+      }, 2000);
+    }
+  };
+</script>
+
+</body>
+</html>

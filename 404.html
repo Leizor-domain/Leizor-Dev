@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | leizor Dev</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'mono': ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-gray-100 font-mono min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 border-b border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-green-400 font-bold text-xl">leizor.dev</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="about.html" class="text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="projects/" class="text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+                        <a href="blog/" class="text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium">Blog</a>
+                        <a href="credentials.html" class="text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium">Credentials</a>
+                        <a href="contact.html" class="text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+        <!-- 404 Icon -->
+        <div class="mb-8">
+            <div class="mx-auto w-32 h-32 bg-gradient-to-br from-red-400 to-pink-500 rounded-full flex items-center justify-center mb-8">
+                <span class="text-6xl">💥</span>
+            </div>
+        </div>
+
+        <!-- Error Message -->
+        <h1 class="text-6xl md:text-8xl font-bold text-red-400 mb-6">
+            404
+        </h1>
+
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+            Oops! Something went wrong.
+        </h2>
+
+        <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+            <span class="text-red-400">You broke it. Or I did.</span>
+            <span class="text-green-400">Let's blame JavaScript.</span>
+        </p>
+
+        <!-- Error Details -->
+        <div class="bg-gray-800 rounded-lg p-8 border border-gray-700 mb-12 max-w-2xl mx-auto">
+            <h3 class="text-xl font-bold text-green-400 mb-4">What happened?</h3>
+            <div class="text-left space-y-3 text-gray-300">
+                <div class="flex items-start">
+                    <span class="text-red-400 mr-3 mt-1">🔍</span>
+                    <p>The page you're looking for doesn't exist (or I forgot to build it)</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-yellow-400 mr-3 mt-1">🐛</span>
+                    <p>There might be a bug in my routing logic</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-blue-400 mr-3 mt-1">☕</span>
+                    <p>I was probably drinking coffee instead of testing links</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-purple-400 mr-3 mt-1">🎯</span>
+                    <p>Or maybe you just typed the URL wrong (no judgment)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <a href="index.html" class="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-lg transition-colors duration-200 transform hover:scale-105">
+                🏠 Go Home
+            </a>
+            <a href="projects/" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg transition-colors duration-200 transform hover:scale-105">
+                📁 Browse Projects
+            </a>
+            <a href="contact.html" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-8 rounded-lg transition-colors duration-200 transform hover:scale-105">
+                📧 Report This Bug
+            </a>
+        </div>
+
+        <!-- Fun Error Codes -->
+        <div class="bg-gray-800 rounded-lg p-8 border border-gray-700 max-w-2xl mx-auto">
+            <h3 class="text-xl font-bold text-green-400 mb-4">Other Error Codes You Might See</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div class="p-3 bg-gray-700 rounded-lg">
+                    <span class="text-red-400 font-bold">500</span>
+                    <span class="text-gray-300"> - Server error (I broke something)</span>
+                </div>
+                <div class="p-3 bg-gray-700 rounded-lg">
+                    <span class="text-red-400 font-bold">403</span>
+                    <span class="text-gray-300"> - Forbidden (You're not authorized)</span>
+                </div>
+                <div class="p-3 bg-gray-700 rounded-lg">
+                    <span class="text-red-400 font-bold">418</span>
+                    <span class="text-gray-300"> - I'm a teapot (RFC joke)</span>
+                </div>
+                <div class="p-3 bg-gray-700 rounded-lg">
+                    <span class="text-red-400 font-bold">☕</span>
+                    <span class="text-gray-300"> - Coffee break (Try again later)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Console Message -->
+        <div class="mt-12 text-center">
+            <div class="bg-gray-800 rounded-lg p-6 border border-gray-700 max-w-2xl mx-auto">
+                <p class="text-gray-300">
+                    <span class="text-green-400">Pro tip:</span>
+                    Open your browser's console (F12) for a special message.
+                    <span class="text-gray-500">Yes, I'm that kind of developer.</span>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 border-t border-gray-700 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center text-gray-400">
+                <p>&copy; 2024 leizor Dev. Built with ❤️ and probably some frustration.</p>
+                <p class="text-sm mt-2">Yeah, I built that. Want one too?</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Console easter egg
+        console.log("🚨 404 Error Detected!");
+        console.log("You broke it. Or I did. Let's blame JavaScript.");
+        console.log("But seriously, thanks for visiting my site!");
+        console.log("Try going back to the homepage or check the URL.");
+
+        // Add some fun to the 404 page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Make the 404 number bounce
+            const errorNumber = document.querySelector('.text-6xl');
+            errorNumber.style.animation = 'bounce 2s infinite';
+
+            // Add some random console messages
+            const messages = [
+                "Have you tried turning it off and on again?",
+                "Did you check if it's plugged in?",
+                "Maybe try clearing your cache?",
+                "Have you tried using a different browser?",
+                "Did you try the magic incantation?",
+                "Have you sacrificed a goat to the code gods?",
+                "Did you check if the server is on fire?",
+                "Maybe it's a DNS issue?",
+                "Have you tried asking Stack Overflow?",
+                "Did you check if it's a leap year?"
+            ];
+
+            setInterval(() => {
+                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                console.log(`💡 Debugging tip: ${randomMessage}`);
+            }, 10000);
+        });
+
+        // Add CSS animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes bounce {
+                0%, 20%, 50%, 80%, 100% {
+                    transform: translateY(0);
+                }
+                40% {
+                    transform: translateY(-10px);
+                }
+                60% {
+                    transform: translateY(-5px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
