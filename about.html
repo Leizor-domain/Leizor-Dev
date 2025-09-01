@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
@@ -75,13 +76,52 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        .gradient-bg {
+        /* Theme Variables */
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --accent: #0ea5e9;
+        }
+
+        .dark {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border-color: #334155;
+            --accent: #0ea5e9;
+        }
+
+        /* Light Theme Styles */
+        .light .gradient-bg {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        /* Dark Theme Styles */
+        .dark .gradient-bg {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
             background-size: 400% 400%;
             animation: gradient 15s ease infinite;
         }
         
         .glass-effect {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .light .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .glass-effect {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -116,7 +156,41 @@
         }
     </style>
 </head>
-<body class="gradient-bg text-white font-sans antialiased overflow-x-hidden">
+<body class="gradient-bg text-slate-800 font-sans antialiased overflow-x-hidden">
+    <!-- Theme Toggle Script -->
+    <script>
+        // Theme management
+        function getTheme() {
+            return localStorage.getItem('theme') || 'light';
+        }
+
+        function setTheme(theme) {
+            localStorage.setItem('theme', theme);
+            document.documentElement.className = theme;
+            updateThemeToggle();
+        }
+
+        function toggleTheme() {
+            const currentTheme = getTheme();
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+        }
+
+        function updateThemeToggle() {
+            const theme = getTheme();
+            const toggleBtn = document.getElementById('theme-toggle');
+            if (toggleBtn) {
+                toggleBtn.innerHTML = theme === 'light' 
+                    ? '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9 0 0012 21a9.003 9 0 008.354-5.646z"></path></svg>'
+                    : '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m6.75-6.75l.75.75m0 0l.75-.75M6.75 6.75l-.75.75m0 0l-.75-.75m13.5 13.5l.75.75m0 0l.75-.75m0 0l-.75.75m0 0l-.75-.75M6.75 17.25l.75.75m0 0l.75-.75m0 0l-.75.75m0 0l-.75-.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
+            }
+        }
+
+        // Initialize theme on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTheme(getTheme());
+        });
+    </script>
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-white/10">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
@@ -125,25 +199,36 @@
                     <a href="index.html" class="text-2xl font-bold text-gradient">leizor.dev</a>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-neutral-300 font-medium hover:text-primary-400 transition-colors duration-300 relative group">
+                    <a href="index.html" class="text-slate-600 dark:text-neutral-300 font-medium hover:text-primary-400 transition-colors duration-300 relative group">
                         Home
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="about.html" class="text-white font-medium relative group">
+                    <a href="about.html" class="text-slate-800 dark:text-white font-medium relative group">
                         About
                         <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-primary-400"></span>
                     </a>
-                    <a href="work.html" class="text-neutral-300 font-medium hover:text-primary-400 transition-colors duration-300 relative group">
+                    <a href="work.html" class="text-slate-600 dark:text-neutral-300 font-medium hover:text-primary-400 transition-colors duration-300 relative group">
                         Work
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="blog/" class="text-neutral-300 font-medium hover:text-primary-400 transition-colors duration-300 relative group">
+                    <a href="blog/" class="text-slate-600 dark:text-neutral-300 font-medium hover:text-primary-400 transition-colors duration-300 relative group">
                         Insights
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
                     </a>
                     <a href="contact.html" class="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/25">
                         Start Project
                     </a>
+                    <!-- Theme Toggle Button -->
+                    <button 
+                        id="theme-toggle" 
+                        onclick="toggleTheme()" 
+                        class="theme-toggle p-3 rounded-lg hover:shadow-lg transition-all duration-300"
+                        title="Toggle theme"
+                    >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9 0 0012 21a9.003 9 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -174,12 +259,12 @@
                 </div>
                 
                 <h1 class="text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                    <span class="text-white">The Architect</span>
+                    <span class="text-slate-800 dark:text-white">The Architect</span>
                     <br>
                     <span class="text-gradient">Behind Innovation</span>
                 </h1>
                 
-                <p class="text-xl lg:text-2xl text-neutral-300 mb-12 max-w-4xl mx-auto leading-relaxed font-light">
+                <p class="text-xl lg:text-2xl text-slate-600 dark:text-neutral-300 mb-12 max-w-4xl mx-auto leading-relaxed font-light">
                     Enterprise solutions architect and technology consultant with a proven track record 
                     of transforming businesses through innovative digital solutions and scalable architectures.
                 </p>
@@ -191,8 +276,8 @@
     <section class="py-24 relative">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center mb-20">
-                <h2 class="text-5xl font-bold text-white mb-6">Professional Journey</h2>
-                <p class="text-xl text-neutral-400 max-w-3xl mx-auto">
+                <h2 class="text-5xl font-bold text-slate-800 dark:text-white mb-6">Professional Journey</h2>
+                <p class="text-xl text-slate-600 dark:text-neutral-400 max-w-3xl mx-auto">
                     A decade of building, scaling, and transforming digital infrastructure
                 </p>
             </div>
@@ -206,8 +291,8 @@
                         </svg>
                     </div>
                     
-                    <h3 class="text-2xl font-bold text-white mb-4">Education Foundation</h3>
-                    <p class="text-neutral-400 text-sm leading-relaxed">
+                    <h3 class="text-2xl font-bold text-slate-800 dark:text-white mb-4">Education Foundation</h3>
+                    <p class="text-slate-600 dark:text-neutral-400 text-sm leading-relaxed">
                         Computer Science degree with focus on software engineering, algorithms, 
                         and system design. Built a strong foundation in problem-solving methodologies.
                     </p>
@@ -220,8 +305,8 @@
                         </svg>
                     </div>
                     
-                    <h3 class="text-2xl font-bold text-white mb-4">Professional Evolution</h3>
-                    <p class="text-neutral-400 text-sm leading-relaxed">
+                    <h3 class="text-2xl font-bold text-slate-800 dark:text-white mb-4">Professional Evolution</h3>
+                    <p class="text-slate-600 dark:text-neutral-400 text-sm leading-relaxed">
                         Started with Java development, evolved into full-stack solutions, 
                         and now specialize in enterprise applications and cloud architecture.
                     </p>
@@ -234,8 +319,8 @@
                         </svg>
                     </div>
                     
-                    <h3 class="text-2xl font-bold text-white mb-4">Current Focus</h3>
-                    <p class="text-neutral-400 text-sm leading-relaxed">
+                    <h3 class="text-2xl font-bold text-slate-800 dark:text-white mb-4">Current Focus</h3>
+                    <p class="text-slate-600 dark:text-neutral-400 text-sm leading-relaxed">
                         Building scalable solutions, mentoring development teams, and staying current 
                         with emerging technologies to deliver cutting-edge enterprise solutions.
                     </p>
@@ -250,8 +335,8 @@
     <section class="py-24 relative">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center mb-20">
-                <h2 class="text-5xl font-bold text-white mb-6">Technical Expertise</h2>
-                <p class="text-xl text-neutral-400 max-w-3xl mx-auto">
+                <h2 class="text-5xl font-bold text-slate-800 dark:text-white mb-6">Technical Expertise</h2>
+                <p class="text-xl text-slate-600 dark:text-neutral-400 max-w-3xl mx-auto">
                     Mastery across the full technology stack with enterprise-grade proficiency
                 </p>
             </div>
